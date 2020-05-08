@@ -4,10 +4,14 @@ author: "Frida Gomam"
 date: 2015-07-23T21:13:14-05:00
 categories: ["R"]
 tags: ["R Markdown", "plot", "regression"]
+draft: true
+commentable: true
+reading_time: true
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(collapse = TRUE)
+library(dplyr)
 ```
 
 # R Markdown
@@ -19,7 +23,7 @@ You can embed an R code chunk like this:
 ```{r cars}
 summary(cars)
 fit <- lm(dist ~ speed, data = cars)
-fit
+fit %>% head()
 ```
 
 # Including Plots
