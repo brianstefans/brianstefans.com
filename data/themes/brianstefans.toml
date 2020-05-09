@@ -1,0 +1,19 @@
+# Theme metadata
+name = "brianstefans"
+
+# Is theme light or dark?
+light = true
+
+# Primary
+primary = "#ADD8E6"
+
+# Menu
+menu_primary = "#fff"
+menu_text = "#34495e"
+menu_text_active = "#2962ff"  #2b2b2b
+menu_title = "#2b2b2b"
+
+# Home sections'
+background = "#1B4F72"
+home_section_odd = "#154360"# "rgb(255, 255, 255)" #"#008B8B"
+home_section_even = "rgb(247, 247, 247)" #"20B2AA"

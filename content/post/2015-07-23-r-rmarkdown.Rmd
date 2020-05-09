@@ -6,11 +6,13 @@ categories: ["R"]
 tags: ["R Markdown", "plot", "regression"]
 commentable: true
 reading_time: true
+featuredImage: "../authors/admin/avatar.jpg"
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(collapse = TRUE)
+knitr::opts_chunk$set(collapse = TRUE,dpi = 300,cache = TRUE,cache.lazy = TRUE,tidy = "styler",fig.width = 8,fig.height = 8)
 library(dplyr)
+
 ```
 
 # R Markdown
