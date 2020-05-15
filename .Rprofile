@@ -3,6 +3,6 @@ if(file.exists(".~Rprofile")){
 }
 
 options(blogdown.author = "Brian Stephen Ssali",
-        blogdown.subdir  = "/content/post",
+        blogdown.subdir  = "/post",
         blogdown.new_bundle = TRUE,
         blogdown.title_case = TRUE)

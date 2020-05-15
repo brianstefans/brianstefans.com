@@ -1,0 +1,155 @@
+---
+title: Uganda Air Quality Forecast
+author: Brian Stefan Ssali
+date: '2020-05-09'
+slug: uganda-air-quality-forecast
+categories: []
+tags:
+  - R
+  - ZindiChallenge
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2020-05-09T17:54:07+03:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+code_folding: hide
+draft: true 
+---
+
+```{r setup, include=FALSE,echo=FALSE,warning=FALSE,message=FALSE}
+knitr::opts_chunk$set(collapse = TRUE,dpi = 300,cache = TRUE,cache.lazy = TRUE,tidy = "styler",fig.width = 8,fig.height = 8)
+library(dplyr)
+library(flextable)
+library(tidyr)
+library(stringr)
+library(keras)
+library(recipes)
+library(parsnip)
+library(reticulate)
+library(tensorflow)
+
+Sys.setenv(RETICULATE_PYTHON = "C:/Users/Ssali Brian/Miniconda3/envs/rpy_env/python.exe")
+use_python("C:/Users/Ssali Brian/Miniconda3/envs/rpy_env/python.exe")
+
+conda_list()[[1]][3] %>% 
+  use_condaenv(required = T)
+#reading the data 
+air_quality_dirty <- readr::read_csv("./Data/Train.csv")
+metadata <- readr::read_csv("./Data/airqo_metadata.csv")
+
+```
+We are going to be looking at the air quality of Uganda. The data is from a Zindi challenge
+
+Looking at the nature of the data
+```{r echo=FALSE,message=FALSE}
+# tt <- air_quality_dirty %>% head(10) %>% flextable::flextable() %>% flextable::theme_zebra() 
+# flextable::width(tt,width =  .002)
+air_quality_dirty
+#air_quality_dirty %>% head(10) %>% kableExtra::kable("html") %>% kableExtra::kable_styling() %>% kableExtra::scroll_box()
+```
+
+The day's data is nested within the key columns. As such the dta has to be reshaped, the day's column created and the key columns are hihloghted. After cleaning the data, this is what we end up with
+```{r warning=FALSE,message=FALSE}
+# key_columns <-  air_quality_dirty %>% select(-ID,-location,-target) %>% colnames()
+#                                        
+# #editing training and test data
+# air_quality_cleaned <- air_quality_dirty %>% distinct(ID,location,target) 
+# for(i in 1:length(key_columns)){
+#   data <- air_quality_dirty %>% select(ID,location,key_columns[i]) %>% tidyr::separate(!!paste0(key_columns[i]),paste0(key_columns[i],1:120),",") %>% 
+#     tidyr::pivot_longer(c(-ID,-location)) %>% select(-name) %>% mutate(value = as.numeric(value)) %>% 
+#     group_by(ID,location) %>% summarise_if(is.numeric,list(~min(.),~max(.),~mean(.),~sd(.),~median(.)),) %>% 
+#     mutate(var = sd**2,range = max - min) %>% rename_at(vars(-ID,-location),funs(paste0(key_columns[i],"_",.))) 
+#   
+#   air_quality_cleaned <-  air_quality_cleaned %>% inner_join(data)
+# }
+# air_quality_cleaned <- metadata %>% select(-X1,-dist_motorway) %>% left_join(air_quality_cleaned) %>% 
+#   mutate(location = factor(location),location = as.numeric(location))
+```
+
+```{r}
+#purrr::map_dfc(air_quality_dirty %>% select(temp,precip),tidyr::separate(!!paste0(.),paste0(.,1:120),",")) %>% head()
+#air_quality_dirty %>% head() %>% select(temp) %>% mutate(colz = purrr::map(reshape2::colsplit(.,pattern = ",",names = paste0(1:120,.))))
+#air_quality_dirty %>% head() %>% select(temp)  %>%splitstackshape::cSplit(names(.))  %>% View()
+#split_df <- air_quality_dirty %>% head() %>% select(temp,precip,rel_humidity,wind_dir,wind_spd,atmos_press)
+ 
+air_quality_cleaned <- air_quality_dirty %>%  splitstackshape::cSplit(c('temp','precip','rel_humidity','wind_dir','wind_spd','atmos_press'),sep = ",") %>% 
+  pivot_longer(cols = c(-ID,-location,-target),names_to = "variable") %>% 
+  filter(str_detect(variable,paste0(c(1:120),collapse = "|"))==T) %>%
+  mutate(Day = str_replace_all(variable,pattern = "\\D",replacement = ""),variable = str_replace_all(variable,pattern = "\\d",replacement = "")) %>%
+  pivot_wider(names_from = variable,values_from = value) %>% 
+  filter_at(vars(-ID,-location,-target,-Day),all_vars(is.na(.)==F)) %>% 
+  left_join(metadata %>% select(-X1,-dist_motorway)) %>% 
+   group_by(ID,location,target) %>% summarise_if(is.numeric,mean,na.rm=T) %>% 
+  data.frame(stringsAsFactors = F) %>% mutate_at(vars(-ID,-location,-target),list(~case_when(is.na(.)~mean(.,na.rm = T),TRUE~.)))
+
+
+air_quality_cleaned1 <- air_quality_cleaned %>%  mutate(location = factor(location),location = as.numeric(location)) #%>%select(-ID)
+#purrr::map2_df(colnames(split_df),split_df,~reshape2::colsplit(.y,pattern = ",",names = paste0(.x,1:121))) %>% View()
+
+```
+
+
+```{r}
+air_quality_cleaned %>% head() %>% flextable()
+```
+
+# Understand the Data
+```{r}
+air_quality_cleaned %>% select_if(is.numeric) %>% corrr::correlate() %>% corrr::rplot()
+```
+```{r}
+split <- rsample::initial_split(air_quality_cleaned1)
+train = rsample::training(split)  %>% mutate(location = factor(location)) #%>% select(-ID)
+test = rsample::testing(split)%>% mutate(location = factor(location))#%>% select(-ID)
+val = train %>% rsample::initial_split(0.8) %>% rsample::training()
+```
+
+# Buid Model
+```{r}
+#prepaing the data
+bec <- recipe(target ~. ,data = train) %>% 
+  step_BoxCox(all_numeric()) %>% 
+  step_normalize(all_numeric()) %>% 
+  prep()
+
+val_norm <- bake(bec,new_data = val,all_predictors())
+test_norm <- bake(bec,new_data = test,all_predictors())
+```
+
+```{r}
+set.seed(123)
+nnet <- parsnip::mlp(epochs = 50,hidden_units = 5,dropout = 0.1) %>% 
+  set_mode("regression") %>% 
+  set_engine("keras",verbose =0) %>% 
+  fit(target~. ,data =juice(bec))
+
+nnet
+```
+```{r}
+resultz <- val %>% bind_cols(predict(nnet, val))
+```
+
+```{r}
+test_pred <- predict(nnet,test_norm)
+train_pred <-  predict(nnet,juice(bec))
+val_pred <- predict(nnet,val_norm)
+
+#a <- data.frame()
+b <- data.frame(train = round(Metrics::rmse(train$target,train_pred),3),
+                val = round(Metrics::rmse(val$target,val_pred),3),
+                test = round(Metrics::rmse(test$target,test_pred),3))
+b
+```
+
+#saturday 
+penny
+big shot
+shutter island
+inception
+the departed 
+
+

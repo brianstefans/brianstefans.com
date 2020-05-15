@@ -1,0 +1,10 @@
+base
+dplyr
+flextable
+tidyr
+stringr
+keras
+recipes
+parsnip
+reticulate
+tensorflow
