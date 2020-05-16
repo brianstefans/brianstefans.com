@@ -3,66 +3,126 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+<<<<<<< HEAD
     <loc>https://brianstefans.com/post/</loc>
+=======
+    <loc>/post/</loc>
+>>>>>>> f1d2a9195e9b9c24c3492362e441e836bd95217b
     <lastmod>2020-05-08T23:12:25+03:00</lastmod>
   </url>
   
   <url>
+<<<<<<< HEAD
     <loc>https://brianstefans.com/</loc>
+=======
+    <loc>/categories/</loc>
+>>>>>>> f1d2a9195e9b9c24c3492362e441e836bd95217b
     <lastmod>2020-05-08T23:12:25+03:00</lastmod>
   </url>
   
   <url>
+<<<<<<< HEAD
     <loc>https://brianstefans.com/categories/</loc>
+=======
+    <loc>/category/r/</loc>
+>>>>>>> f1d2a9195e9b9c24c3492362e441e836bd95217b
     <lastmod>2020-05-08T23:12:25+03:00</lastmod>
   </url>
   
   <url>
+<<<<<<< HEAD
     <loc>https://brianstefans.com/category/r/</loc>
+=======
+    <loc>/post/test/</loc>
+>>>>>>> f1d2a9195e9b9c24c3492362e441e836bd95217b
     <lastmod>2020-05-08T23:12:25+03:00</lastmod>
   </url>
   
   <url>
+<<<<<<< HEAD
     <loc>https://brianstefans.com/post/test/</loc>
     <lastmod>2020-05-08T23:12:25+03:00</lastmod>
   </url>
   
   <url>
     <loc>https://brianstefans.com/post/2016-12-30-hello-markdown/</loc>
+=======
+    <loc>/</loc>
+    <lastmod>2018-06-28T00:00:00+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/privacy/</loc>
+    <lastmod>2018-06-28T00:00:00+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/terms/</loc>
+    <lastmod>2018-06-28T00:00:00+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/2016-12-30-hello-markdown/</loc>
+>>>>>>> f1d2a9195e9b9c24c3492362e441e836bd95217b
     <lastmod>2016-12-30T21:49:57-07:00</lastmod>
   </url>
   
   <url>
+<<<<<<< HEAD
     <loc>https://brianstefans.com/post/2015-07-23-r-rmarkdown/</loc>
+=======
+    <loc>/post/2015-07-23-r-rmarkdown/</loc>
+>>>>>>> f1d2a9195e9b9c24c3492362e441e836bd95217b
     <lastmod>2015-07-23T21:13:14-05:00</lastmod>
   </url>
   
   <url>
+<<<<<<< HEAD
     <loc>https://brianstefans.com/tag/plot/</loc>
+=======
+    <loc>/tag/plot/</loc>
+>>>>>>> f1d2a9195e9b9c24c3492362e441e836bd95217b
     <lastmod>2015-07-23T21:13:14-05:00</lastmod>
   </url>
   
   <url>
+<<<<<<< HEAD
     <loc>https://brianstefans.com/tag/r-markdown/</loc>
+=======
+    <loc>/tag/r-markdown/</loc>
+>>>>>>> f1d2a9195e9b9c24c3492362e441e836bd95217b
     <lastmod>2015-07-23T21:13:14-05:00</lastmod>
   </url>
   
   <url>
+<<<<<<< HEAD
     <loc>https://brianstefans.com/tag/regression/</loc>
+=======
+    <loc>/tag/regression/</loc>
+>>>>>>> f1d2a9195e9b9c24c3492362e441e836bd95217b
     <lastmod>2015-07-23T21:13:14-05:00</lastmod>
   </url>
   
   <url>
+<<<<<<< HEAD
     <loc>https://brianstefans.com/tags/</loc>
+=======
+    <loc>/tags/</loc>
+>>>>>>> f1d2a9195e9b9c24c3492362e441e836bd95217b
     <lastmod>2015-07-23T21:13:14-05:00</lastmod>
   </url>
   
   <url>
+<<<<<<< HEAD
     <loc>https://brianstefans.com/post/2015-01-01-lorem-ipsum/</loc>
+=======
+    <loc>/post/2015-01-01-lorem-ipsum/</loc>
+>>>>>>> f1d2a9195e9b9c24c3492362e441e836bd95217b
     <lastmod>2015-01-01T13:09:13-06:00</lastmod>
   </url>
   
   <url>
+<<<<<<< HEAD
     <loc>https://brianstefans.com/about/</loc>
   </url>
   
@@ -76,6 +136,21 @@
   
   <url>
     <loc>https://brianstefans.com/publication_types/</loc>
+=======
+    <loc>/about/</loc>
+  </url>
+  
+  <url>
+    <loc>/authors/</loc>
+  </url>
+  
+  <url>
+    <loc>/author/brian-ssali/</loc>
+  </url>
+  
+  <url>
+    <loc>/publication_types/</loc>
+>>>>>>> f1d2a9195e9b9c24c3492362e441e836bd95217b
   </url>
   
 </urlset>
