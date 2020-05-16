@@ -31,10 +31,10 @@ library(stringr)
 the data is from a zindi hackathon and is about t restaurant orders in Oman
 ```{r echo=FALSE,warning=FALSE,message=FALSE}
 #retrieving the data 
-orders <-  readr::read_csv("./Data/orders.csv")
-customers <- readr::read_csv("./Data/train_customers.csv")
-locations <-  readr::read_csv("./Data/train_locations.csv")
-vendors <-  readr::read_csv("./Data/vendors.csv")
+# orders <-  readr::read_csv("./Data/orders.csv")
+# customers <- readr::read_csv("./Data/train_customers.csv")
+# locations <-  readr::read_csv("./Data/train_locations.csv")
+# vendors <-  readr::read_csv("./Data/vendors.csv")
 ```
 
 Taking a pick at teh variables that we have for the datasets

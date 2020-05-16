@@ -38,8 +38,8 @@ use_python("C:/Users/Ssali Brian/Miniconda3/envs/rpy_env/python.exe")
 conda_list()[[1]][3] %>% 
   use_condaenv(required = T)
 #reading the data 
-air_quality_dirty <- readr::read_csv("E:/R/Learning/Zindi/airqo/Train (1).csv")
-metadata <- readr::read_csv("E:/R/Learning/Zindi/airqo/airqo_metadata.csv")
+# air_quality_dirty <- readr::read_csv("E:/R/Learning/Zindi/airqo/Train (1).csv")
+# metadata <- readr::read_csv("E:/R/Learning/Zindi/airqo/airqo_metadata.csv")
 
 ```
 We are going to be looking at the air quality of Uganda. The data is from a Zindi challenge
@@ -48,7 +48,7 @@ Looking at the nature of the data
 ```{r echo=FALSE,message=FALSE}
 # tt <- air_quality_dirty %>% head(10) %>% flextable::flextable() %>% flextable::theme_zebra() 
 # flextable::width(tt,width =  .002)
-air_quality_dirty
+#air_quality_dirty
 #air_quality_dirty %>% head(10) %>% kableExtra::kable("html") %>% kableExtra::kable_styling() %>% kableExtra::scroll_box()
 ```
 
@@ -76,61 +76,61 @@ The day's data is nested within the key columns. As such the dta has to be resha
 #air_quality_dirty %>% head() %>% select(temp)  %>%splitstackshape::cSplit(names(.))  %>% View()
 #split_df <- air_quality_dirty %>% head() %>% select(temp,precip,rel_humidity,wind_dir,wind_spd,atmos_press)
  
-air_quality_cleaned <- air_quality_dirty %>%  splitstackshape::cSplit(c('temp','precip','rel_humidity','wind_dir','wind_spd','atmos_press'),sep = ",") %>% 
-  pivot_longer(cols = c(-ID,-location,-target),names_to = "variable") %>% 
-  filter(str_detect(variable,paste0(c(1:120),collapse = "|"))==T) %>%
-  mutate(Day = str_replace_all(variable,pattern = "\\D",replacement = ""),variable = str_replace_all(variable,pattern = "\\d",replacement = "")) %>%
-  pivot_wider(names_from = variable,values_from = value) %>% 
-  filter_at(vars(-ID,-location,-target,-Day),all_vars(is.na(.)==F)) %>% 
-  left_join(metadata %>% select(-X1,-dist_motorway)) %>% 
-   group_by(ID,location,target) %>% summarise_if(is.numeric,mean,na.rm=T) %>% 
-  data.frame(stringsAsFactors = F) %>% mutate_at(vars(-ID,-location,-target),list(~case_when(is.na(.)~mean(.,na.rm = T),TRUE~.)))
-
-
-air_quality_cleaned1 <- air_quality_cleaned %>%  mutate(location = factor(location),location = as.numeric(location)) #%>%select(-ID)
+# air_quality_cleaned <- air_quality_dirty %>%  splitstackshape::cSplit(c('temp','precip','rel_humidity','wind_dir','wind_spd','atmos_press'),sep = ",") %>% 
+#   pivot_longer(cols = c(-ID,-location,-target),names_to = "variable") %>% 
+#   filter(str_detect(variable,paste0(c(1:120),collapse = "|"))==T) %>%
+#   mutate(Day = str_replace_all(variable,pattern = "\\D",replacement = ""),variable = str_replace_all(variable,pattern = "\\d",replacement = "")) %>%
+#   pivot_wider(names_from = variable,values_from = value) %>% 
+#   filter_at(vars(-ID,-location,-target,-Day),all_vars(is.na(.)==F)) %>% 
+#   left_join(metadata %>% select(-X1,-dist_motorway)) %>% 
+#    group_by(ID,location,target) %>% summarise_if(is.numeric,mean,na.rm=T) %>% 
+#   data.frame(stringsAsFactors = F) %>% mutate_at(vars(-ID,-location,-target),list(~case_when(is.na(.)~mean(.,na.rm = T),TRUE~.)))
+# 
+# 
+# air_quality_cleaned1 <- air_quality_cleaned %>%  mutate(location = factor(location),location = as.numeric(location)) #%>%select(-ID)
 #purrr::map2_df(colnames(split_df),split_df,~reshape2::colsplit(.y,pattern = ",",names = paste0(.x,1:121))) %>% View()
 
 ```
 
 
 ```{r}
-air_quality_cleaned %>% head() %>% flextable()
+# air_quality_cleaned %>% head() %>% flextable()
 ```
 
 # Understand the Data
 ```{r}
-air_quality_cleaned %>% select_if(is.numeric) %>% corrr::correlate() %>% corrr::rplot()
+# air_quality_cleaned %>% select_if(is.numeric) %>% corrr::correlate() %>% corrr::rplot()
 ```
 ```{r}
-split <- rsample::initial_split(air_quality_cleaned1)
-train = rsample::training(split)  %>% mutate(location = factor(location)) #%>% select(-ID)
-test = rsample::testing(split)%>% mutate(location = factor(location))#%>% select(-ID)
-val = train %>% rsample::initial_split(0.8) %>% rsample::training()
+# split <- rsample::initial_split(air_quality_cleaned1)
+# train = rsample::training(split)  %>% mutate(location = factor(location)) #%>% select(-ID)
+# test = rsample::testing(split)%>% mutate(location = factor(location))#%>% select(-ID)
+# val = train %>% rsample::initial_split(0.8) %>% rsample::training()
 ```
 
 # Buid Model
 ```{r}
-#prepaing the data
-bec <- recipe(target ~. ,data = train) %>% 
-  step_BoxCox(all_numeric()) %>% 
-  step_normalize(all_numeric()) %>% 
-  prep()
-
-val_norm <- bake(bec,new_data = val,all_predictors())
-test_norm <- bake(bec,new_data = test,all_predictors())
+# #prepaing the data
+# bec <- recipe(target ~. ,data = train) %>% 
+#   step_BoxCox(all_numeric()) %>% 
+#   step_normalize(all_numeric()) %>% 
+#   prep()
+# 
+# val_norm <- bake(bec,new_data = val,all_predictors())
+# test_norm <- bake(bec,new_data = test,all_predictors())
 ```
 
 ```{r}
-set.seed(123)
-nnet <- parsnip::mlp(epochs = 50,hidden_units = 5,dropout = 0.1) %>% 
-  set_mode("regression") %>% 
-  set_engine("keras",verbose =0) %>% 
-  fit(target~. ,data =juice(bec))
-
-nnet
+# set.seed(123)
+# nnet <- parsnip::mlp(epochs = 50,hidden_units = 5,dropout = 0.1) %>% 
+#   set_mode("regression") %>% 
+#   set_engine("keras",verbose =0) %>% 
+#   fit(target~. ,data =juice(bec))
+# 
+# nnet
 ```
 ```{r}
-resultz <- val %>% bind_cols(predict(nnet, val))
+#resultz <- val %>% bind_cols(predict(nnet, val))
 ```
 
 ```{r}
