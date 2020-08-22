@@ -212,7 +212,7 @@ skimr::skim(passwords)</code></pre>
 </tr>
 </tbody>
 </table>
-<p>There are some rows with NAs that we are going to remove.It would be interesting to see the how long the passwords take to be cracked based on their corresponding categories and their strenght as well</p>
+<p>There are some rows with NAs that we are going to remove.It would be interesting to see the how long the passwords take to be cracked based on their corresponding categories and their strength as well</p>
 <pre class="r"><code>
 plot1 &lt;- passwords %&gt;%
   filter(!is.na(category)) %&gt;%
@@ -223,5 +223,22 @@ plot1 &lt;- passwords %&gt;%
   coord_polar(clip = &quot;on&quot;) +
   theme_dark() +
   theme(legend.position = &quot;bottom&quot;, axis.text = element_text(colour = &quot;black&quot;), panel.grid.major = element_line(&quot;gray&quot;)) +
-  scale_colour_manual(values = c(&quot;#FFDB6D&quot;, &quot;#C4961A&quot;, &quot;#F4EDCA&quot;, &quot;#D16103&quot;, &quot;#00AFBB&quot;, &quot;#4E84C4&quot;, &quot;#FC4E07&quot;), guide = guide_legend(nrow = 1))</code></pre>
+  scale_colour_manual(values = c(&quot;#FFDB6D&quot;, &quot;#C4961A&quot;, &quot;#F4EDCA&quot;, &quot;#D16103&quot;, &quot;#00AFBB&quot;, &quot;#4E84C4&quot;, &quot;#FC4E07&quot;), guide = guide_legend(nrow = 1))
+
+plot1</code></pre>
+<p><img src="/post/2020-08-22-tidytuesday-cracking-passwords/index_files/figure-html/glimpse_of_dataset%20-1.png" width="1600" /></p>
+<pre class="r"><code>passwords %&gt;%
+  filter(!is.na(category)) %&gt;%
+  group_by(category) %&gt;%
+  transmute(strength = mean(strength, na.rm = T)) %&gt;%
+  tidyr::pivot_longer(cols = c(strength)) %&gt;%
+  arrange(value) %&gt;%
+  distinct(.) %&gt;%
+  ggplot(aes(value, reorder(category, value), fill = name)) +
+  geom_segment(aes(xend = 0, yend = category)) +
+  geom_point(size = 4, aes(color = category), show.legend = F) +
+  geom_text(aes(label = round(value, 1)), hjust = -.5) +
+  theme_minimal() +
+  labs(x = &quot;Strenght of Password&quot;, y = &quot;Category of Password&quot;)</code></pre>
+<p><img src="/post/2020-08-22-tidytuesday-cracking-passwords/index_files/figure-html/strenght_of_pswd%20-1.png" width="1600" /></p>
 </div>

@@ -2,14 +2,14 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Authors | Brian Stephen Ssali</title>
-    <link>https://brianstefans.com/authors/</link>
-      <atom:link href="https://brianstefans.com/authors/index.xml" rel="self" type="application/rss+xml" />
+    <link>/authors/</link>
+      <atom:link href="/authors/index.xml" rel="self" type="application/rss+xml" />
     <description>Authors</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Brian Stephen Ssali 2020</copyright>
     <image>
-      <url>https://brianstefans.com/images/icon_hu351f3ef6afdcba0ca5a2bf4b5cce77fa_9092_512x512_fill_lanczos_center_2.png</url>
+      <url>/images/icon_hu351f3ef6afdcba0ca5a2bf4b5cce77fa_9092_512x512_fill_lanczos_center_2.png</url>
       <title>Authors</title>
-      <link>https://brianstefans.com/authors/</link>
+      <link>/authors/</link>
     </image>
     
   </channel>

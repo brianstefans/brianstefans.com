@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tidytuesday | Brian Stephen Ssali</title>
-    <link>https://brianstefans.com/tag/tidytuesday/</link>
-      <atom:link href="https://brianstefans.com/tag/tidytuesday/index.xml" rel="self" type="application/rss+xml" />
+    <link>/tag/tidytuesday/</link>
+      <atom:link href="/tag/tidytuesday/index.xml" rel="self" type="application/rss+xml" />
     <description>Tidytuesday</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Brian Stephen Ssali 2020</copyright><lastBuildDate>Sat, 22 Aug 2020 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://brianstefans.com/images/icon_hu351f3ef6afdcba0ca5a2bf4b5cce77fa_9092_512x512_fill_lanczos_center_2.png</url>
+      <url>/images/icon_hu351f3ef6afdcba0ca5a2bf4b5cce77fa_9092_512x512_fill_lanczos_center_2.png</url>
       <title>Tidytuesday</title>
-      <link>https://brianstefans.com/tag/tidytuesday/</link>
+      <link>/tag/tidytuesday/</link>
     </image>
     
     <item>
       <title>#Tidytuesday Cracking Passwords</title>
-      <link>https://brianstefans.com/post/tidytuesday-cracking-passwords/</link>
+      <link>/post/tidytuesday-cracking-passwords/</link>
       <pubDate>Sat, 22 Aug 2020 00:00:00 +0000</pubDate>
-      <guid>https://brianstefans.com/post/tidytuesday-cracking-passwords/</guid>
+      <guid>/post/tidytuesday-cracking-passwords/</guid>
       <description>
 
 
@@ -212,7 +212,7 @@ skimr::skim(passwords)&lt;/code&gt;&lt;/pre&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;There are some rows with NAs that we are going to remove.It would be interesting to see the how long the passwords take to be cracked based on their corresponding categories and their strenght as well&lt;/p&gt;
+&lt;p&gt;There are some rows with NAs that we are going to remove.It would be interesting to see the how long the passwords take to be cracked based on their corresponding categories and their strength as well&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;
 plot1 &amp;lt;- passwords %&amp;gt;%
   filter(!is.na(category)) %&amp;gt;%
@@ -223,7 +223,24 @@ plot1 &amp;lt;- passwords %&amp;gt;%
   coord_polar(clip = &amp;quot;on&amp;quot;) +
   theme_dark() +
   theme(legend.position = &amp;quot;bottom&amp;quot;, axis.text = element_text(colour = &amp;quot;black&amp;quot;), panel.grid.major = element_line(&amp;quot;gray&amp;quot;)) +
-  scale_colour_manual(values = c(&amp;quot;#FFDB6D&amp;quot;, &amp;quot;#C4961A&amp;quot;, &amp;quot;#F4EDCA&amp;quot;, &amp;quot;#D16103&amp;quot;, &amp;quot;#00AFBB&amp;quot;, &amp;quot;#4E84C4&amp;quot;, &amp;quot;#FC4E07&amp;quot;), guide = guide_legend(nrow = 1))&lt;/code&gt;&lt;/pre&gt;
+  scale_colour_manual(values = c(&amp;quot;#FFDB6D&amp;quot;, &amp;quot;#C4961A&amp;quot;, &amp;quot;#F4EDCA&amp;quot;, &amp;quot;#D16103&amp;quot;, &amp;quot;#00AFBB&amp;quot;, &amp;quot;#4E84C4&amp;quot;, &amp;quot;#FC4E07&amp;quot;), guide = guide_legend(nrow = 1))
+
+plot1&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-08-22-tidytuesday-cracking-passwords/index_files/figure-html/glimpse_of_dataset%20-1.png&#34; width=&#34;1600&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;passwords %&amp;gt;%
+  filter(!is.na(category)) %&amp;gt;%
+  group_by(category) %&amp;gt;%
+  transmute(strength = mean(strength, na.rm = T)) %&amp;gt;%
+  tidyr::pivot_longer(cols = c(strength)) %&amp;gt;%
+  arrange(value) %&amp;gt;%
+  distinct(.) %&amp;gt;%
+  ggplot(aes(value, reorder(category, value), fill = name)) +
+  geom_segment(aes(xend = 0, yend = category)) +
+  geom_point(size = 4, aes(color = category), show.legend = F) +
+  geom_text(aes(label = round(value, 1)), hjust = -.5) +
+  theme_minimal() +
+  labs(x = &amp;quot;Strenght of Password&amp;quot;, y = &amp;quot;Category of Password&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-08-22-tidytuesday-cracking-passwords/index_files/figure-html/strenght_of_pswd%20-1.png&#34; width=&#34;1600&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 </description>
     </item>
