@@ -1,0 +1,72 @@
+---
+title: #Tidytuesday Cracking Passwords
+author: Brian Stephen Ssali
+date: '2020-08-22'
+slug: #Tidytuesday-cracking-passwords
+categories: []
+tags:
+  - Tidytuesday
+  - R
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2020-08-22T17:23:10+03:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+draft:: true
+---
+We are going to look a dataset from the Tidytuesday on the passwords. The dataset entails the actual text of the password,the category of the password,time taken to crack the password(both online and offline) and the strength of the password.
+
+```{r setup, include=FALSE,message=FALSE,warning=FALSE}
+knitr::opts_chunk$set(collapse = TRUE,dpi = 200,cache = TRUE,cache.lazy = TRUE,tidy = "styler",fig.width = 8,fig.height = 8)
+library(dplyr)
+library(stringr)
+library(ggplot2)
+options("scipen"=999,digits = 4)
+
+#passwords <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-01-14/passwords.csv')
+passwords <- readr::read_csv(here::here("./content/post/2020-08-22-cracking-passwords/Data/passwords.csv"))
+```
+
+# Exploring the dataset
+We use the skimr package to have a quick overview of the data with all the data types.
+
+```{r overview_of_dataset ,message=FALSE,warning=FALSE}
+library(skimr)
+skimr::skim(passwords)
+```
+
+There are some rows with NAs that we are going to remove.It would be interesting to see the how long the passwords take to be cracked based on their corresponding categories and their strenght as well
+
+```{r glimpse_of_dataset ,message=FALSE,warning=FALSE}
+
+library(kableExtra)
+
+plot1 <- passwords %>% filter(!is.na(category)) %>% mutate(time_unit = factor(time_unit,levels =  c("seconds","minutes","hours","days","weeks","months" ,"years"))) %>% 
+  ggplot(aes(category,value,fill = time_unit))+
+  geom_point(aes(colour = time_unit),size = 2.5)+#coord_polar()
+  #geom_jitter(aes(colour = time_unit))+
+  coord_polar(clip = "on")+theme_dark()+
+  theme(legend.position = "bottom",axis.text = element_text(colour = "black"),panel.grid.major = element_line("gray"))+ 
+  scale_colour_manual(values = c("#FFDB6D","#C4961A","#F4EDCA","#D16103","#00AFBB","#4E84C4","#FC4E07"),guide = guide_legend(nrow = 1))
+
+```
+
+The passwords in the nerdy-pop,password-related,single alphanumeric and sport categories take the longest time to crack. This can be validated by the average strenght of the passwords based on their categories
+
+```{r strenght_of_psd ,message=FALSE,warning=FALSE,dpi=200}
+  passwords %>% filter(!is.na(category)) %>% 
+    group_by(category) %>% transmute(strength = mean(strength,na.rm = T)) %>% 
+    tidyr::pivot_longer(cols = c(strength)) %>% arrange(value) %>% distinct(.) %>% 
+    ggplot(aes(value,reorder(category,value),fill = name))+
+    geom_segment(aes(xend = 0,yend  = category))+
+    geom_point(size = 4,aes(color = category),show.legend = F)+
+    geom_text(aes(label = round(value,1)),hjust = -.5)+theme_minimal()+
+    labs(x = "Strenght of Password",y = "Category of Password")
+```
+
+
