@@ -2,14 +2,14 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Brian Ssali | Brian Stephen Ssali</title>
-    <link>/author/brian-ssali/</link>
-      <atom:link href="/author/brian-ssali/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://brianstefans.com/author/brian-ssali/</link>
+      <atom:link href="https://brianstefans.com/author/brian-ssali/index.xml" rel="self" type="application/rss+xml" />
     <description>Brian Ssali</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Brian Stephen Ssali 2020</copyright>
     <image>
-      <url>/author/brian-ssali/avatar_huaf6c7ec9dd96a6acb85741b32afb82e3_2532193_270x270_fill_q90_lanczos_center.jpg</url>
+      <url>https://brianstefans.com/author/brian-ssali/avatar_huaf6c7ec9dd96a6acb85741b32afb82e3_2532193_270x270_fill_q90_lanczos_center.jpg</url>
       <title>Brian Ssali</title>
-      <link>/author/brian-ssali/</link>
+      <link>https://brianstefans.com/author/brian-ssali/</link>
     </image>
     
   </channel>

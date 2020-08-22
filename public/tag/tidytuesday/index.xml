@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tidytuesday | Brian Stephen Ssali</title>
-    <link>/tag/tidytuesday/</link>
-      <atom:link href="/tag/tidytuesday/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://brianstefans.com/tag/tidytuesday/</link>
+      <atom:link href="https://brianstefans.com/tag/tidytuesday/index.xml" rel="self" type="application/rss+xml" />
     <description>Tidytuesday</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Brian Stephen Ssali 2020</copyright><lastBuildDate>Sat, 22 Aug 2020 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/images/icon_hu351f3ef6afdcba0ca5a2bf4b5cce77fa_9092_512x512_fill_lanczos_center_2.png</url>
+      <url>https://brianstefans.com/images/icon_hu351f3ef6afdcba0ca5a2bf4b5cce77fa_9092_512x512_fill_lanczos_center_2.png</url>
       <title>Tidytuesday</title>
-      <link>/tag/tidytuesday/</link>
+      <link>https://brianstefans.com/tag/tidytuesday/</link>
     </image>
     
     <item>
       <title>#Tidytuesday Cracking Passwords</title>
-      <link>/post/tidytuesday-cracking-passwords/</link>
+      <link>https://brianstefans.com/post/tidytuesday-cracking-passwords/</link>
       <pubDate>Sat, 22 Aug 2020 00:00:00 +0000</pubDate>
-      <guid>/post/tidytuesday-cracking-passwords/</guid>
+      <guid>https://brianstefans.com/post/tidytuesday-cracking-passwords/</guid>
       <description>
 
 

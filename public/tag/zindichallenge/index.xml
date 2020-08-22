@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>ZindiChallenge | Brian Stephen Ssali</title>
-    <link>/tag/zindichallenge/</link>
-      <atom:link href="/tag/zindichallenge/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://brianstefans.com/tag/zindichallenge/</link>
+      <atom:link href="https://brianstefans.com/tag/zindichallenge/index.xml" rel="self" type="application/rss+xml" />
     <description>ZindiChallenge</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Brian Stephen Ssali 2020</copyright><lastBuildDate>Fri, 15 May 2020 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/images/icon_hu351f3ef6afdcba0ca5a2bf4b5cce77fa_9092_512x512_fill_lanczos_center_2.png</url>
+      <url>https://brianstefans.com/images/icon_hu351f3ef6afdcba0ca5a2bf4b5cce77fa_9092_512x512_fill_lanczos_center_2.png</url>
       <title>ZindiChallenge</title>
-      <link>/tag/zindichallenge/</link>
+      <link>https://brianstefans.com/tag/zindichallenge/</link>
     </image>
     
     <item>
       <title>Understandning Restaurant Orders</title>
-      <link>/post/understandning-restaurant-orders/</link>
+      <link>https://brianstefans.com/post/understandning-restaurant-orders/</link>
       <pubDate>Fri, 15 May 2020 00:00:00 +0000</pubDate>
-      <guid>/post/understandning-restaurant-orders/</guid>
+      <guid>https://brianstefans.com/post/understandning-restaurant-orders/</guid>
       <description>
 
 
