@@ -1,0 +1,227 @@
+---
+title: '#Tidytuesday Cracking Passwords'
+author: Brian Stephen Ssali
+date: '2020-08-22'
+slug: tidytuesday-cracking-passwords
+categories: []
+tags:
+  - R
+  - Tidytuesday
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2020-08-22T23:27:08+03:00'
+featured: yes
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+---
+
+
+
+<p>We are going to look a dataset from the Tidytuesday on the passwords. The dataset entails the actual text of the password,the category of the password,time taken to crack the password(both online and offline) and the strength of the password.</p>
+<div id="exploring-the-dataset" class="section level1">
+<h1>Exploring the dataset</h1>
+<p>We use the skimr package to have a quick overview of the data with all the data types.</p>
+<pre class="r"><code>library(skimr)
+skimr::skim(passwords)</code></pre>
+<table>
+<caption>(#tab:overview_of_dataset )Data summary</caption>
+<tbody>
+<tr class="odd">
+<td align="left">Name</td>
+<td align="left">passwords</td>
+</tr>
+<tr class="even">
+<td align="left">Number of rows</td>
+<td align="left">507</td>
+</tr>
+<tr class="odd">
+<td align="left">Number of columns</td>
+<td align="left">9</td>
+</tr>
+<tr class="even">
+<td align="left">_______________________</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Column type frequency:</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">character</td>
+<td align="left">3</td>
+</tr>
+<tr class="odd">
+<td align="left">numeric</td>
+<td align="left">6</td>
+</tr>
+<tr class="even">
+<td align="left">________________________</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Group variables</td>
+<td align="left">None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: character</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="right">min</th>
+<th align="right">max</th>
+<th align="right">empty</th>
+<th align="right">n_unique</th>
+<th align="right">whitespace</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">password</td>
+<td align="right">7</td>
+<td align="right">0.99</td>
+<td align="right">4</td>
+<td align="right">9</td>
+<td align="right">0</td>
+<td align="right">500</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">category</td>
+<td align="right">7</td>
+<td align="right">0.99</td>
+<td align="right">4</td>
+<td align="right">19</td>
+<td align="right">0</td>
+<td align="right">10</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">time_unit</td>
+<td align="right">7</td>
+<td align="right">0.99</td>
+<td align="right">4</td>
+<td align="right">7</td>
+<td align="right">0</td>
+<td align="right">7</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="right">p0</th>
+<th align="right">p25</th>
+<th align="right">p50</th>
+<th align="right">p75</th>
+<th align="right">p100</th>
+<th align="left">hist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">rank</td>
+<td align="right">7</td>
+<td align="right">0.99</td>
+<td align="right">250.50</td>
+<td align="right">144.48</td>
+<td align="right">1.00</td>
+<td align="right">125.75</td>
+<td align="right">250.50</td>
+<td align="right">375.25</td>
+<td align="right">500.00</td>
+<td align="left">▇▇▇▇▇</td>
+</tr>
+<tr class="even">
+<td align="left">value</td>
+<td align="right">7</td>
+<td align="right">0.99</td>
+<td align="right">5.60</td>
+<td align="right">8.44</td>
+<td align="right">1.29</td>
+<td align="right">3.43</td>
+<td align="right">3.72</td>
+<td align="right">3.72</td>
+<td align="right">92.27</td>
+<td align="left">▇▁▁▁▁</td>
+</tr>
+<tr class="odd">
+<td align="left">offline_crack_sec</td>
+<td align="right">7</td>
+<td align="right">0.99</td>
+<td align="right">0.50</td>
+<td align="right">2.66</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">0.08</td>
+<td align="right">29.27</td>
+<td align="left">▇▁▁▁▁</td>
+</tr>
+<tr class="even">
+<td align="left">rank_alt</td>
+<td align="right">7</td>
+<td align="right">0.99</td>
+<td align="right">251.22</td>
+<td align="right">145.05</td>
+<td align="right">1.00</td>
+<td align="right">125.75</td>
+<td align="right">251.50</td>
+<td align="right">376.25</td>
+<td align="right">502.00</td>
+<td align="left">▇▇▇▇▇</td>
+</tr>
+<tr class="odd">
+<td align="left">strength</td>
+<td align="right">7</td>
+<td align="right">0.99</td>
+<td align="right">7.43</td>
+<td align="right">5.42</td>
+<td align="right">0.00</td>
+<td align="right">6.00</td>
+<td align="right">7.00</td>
+<td align="right">8.00</td>
+<td align="right">48.00</td>
+<td align="left">▇▁▁▁▁</td>
+</tr>
+<tr class="even">
+<td align="left">font_size</td>
+<td align="right">7</td>
+<td align="right">0.99</td>
+<td align="right">10.30</td>
+<td align="right">3.65</td>
+<td align="right">0.00</td>
+<td align="right">10.00</td>
+<td align="right">11.00</td>
+<td align="right">11.00</td>
+<td align="right">28.00</td>
+<td align="left">▁▇▁▁▁</td>
+</tr>
+</tbody>
+</table>
+<p>There are some rows with NAs that we are going to remove.It would be interesting to see the how long the passwords take to be cracked based on their corresponding categories and their strenght as well</p>
+<pre class="r"><code>
+plot1 &lt;- passwords %&gt;%
+  filter(!is.na(category)) %&gt;%
+  mutate(time_unit = factor(time_unit, levels = c(&quot;seconds&quot;, &quot;minutes&quot;, &quot;hours&quot;, &quot;days&quot;, &quot;weeks&quot;, &quot;months&quot;, &quot;years&quot;))) %&gt;%
+  ggplot(aes(category, value, fill = time_unit)) +
+  geom_point(aes(colour = time_unit), size = 2.5) + # coord_polar()
+  # geom_jitter(aes(colour = time_unit))+
+  coord_polar(clip = &quot;on&quot;) +
+  theme_dark() +
+  theme(legend.position = &quot;bottom&quot;, axis.text = element_text(colour = &quot;black&quot;), panel.grid.major = element_line(&quot;gray&quot;)) +
+  scale_colour_manual(values = c(&quot;#FFDB6D&quot;, &quot;#C4961A&quot;, &quot;#F4EDCA&quot;, &quot;#D16103&quot;, &quot;#00AFBB&quot;, &quot;#4E84C4&quot;, &quot;#FC4E07&quot;), guide = guide_legend(nrow = 1))</code></pre>
+</div>

@@ -7,7 +7,6 @@ tags: ["R Markdown", "plot", "regression"]
 commentable: true
 reading_time: true
 featuredImage: "../authors/admin/avatar.jpg"
-draft: true
 ---
 
 ```{r setup, include=FALSE}
