@@ -1,24 +1,24 @@
 ---
-title: #Tidytuesday Cracking Passwords
+title: '#Tidytuesday Cracking Passwords'
 author: Brian Stephen Ssali
 date: '2020-08-22'
-slug: #Tidytuesday-cracking-passwords
+slug: tidytuesday-cracking-passwords
 categories: []
 tags:
-  - Tidytuesday
   - R
+  - Tidytuesday
 subtitle: ''
 summary: ''
 authors: []
-lastmod: '2020-08-22T17:23:10+03:00'
+lastmod: '2020-08-22T23:27:08+03:00'
 featured: no
 image:
   caption: ''
   focal_point: ''
   preview_only: no
 projects: []
-draft:: true
 ---
+
 We are going to look a dataset from the Tidytuesday on the passwords. The dataset entails the actual text of the password,the category of the password,time taken to crack the password(both online and offline) and the strength of the password.
 
 ```{r setup, include=FALSE,message=FALSE,warning=FALSE}
@@ -55,18 +55,3 @@ plot1 <- passwords %>% filter(!is.na(category)) %>% mutate(time_unit = factor(ti
   scale_colour_manual(values = c("#FFDB6D","#C4961A","#F4EDCA","#D16103","#00AFBB","#4E84C4","#FC4E07"),guide = guide_legend(nrow = 1))
 
 ```
-
-The passwords in the nerdy-pop,password-related,single alphanumeric and sport categories take the longest time to crack. This can be validated by the average strenght of the passwords based on their categories
-
-```{r strenght_of_psd ,message=FALSE,warning=FALSE,dpi=200}
-  passwords %>% filter(!is.na(category)) %>% 
-    group_by(category) %>% transmute(strength = mean(strength,na.rm = T)) %>% 
-    tidyr::pivot_longer(cols = c(strength)) %>% arrange(value) %>% distinct(.) %>% 
-    ggplot(aes(value,reorder(category,value),fill = name))+
-    geom_segment(aes(xend = 0,yend  = category))+
-    geom_point(size = 4,aes(color = category),show.legend = F)+
-    geom_text(aes(label = round(value,1)),hjust = -.5)+theme_minimal()+
-    labs(x = "Strenght of Password",y = "Category of Password")
-```
-
-
