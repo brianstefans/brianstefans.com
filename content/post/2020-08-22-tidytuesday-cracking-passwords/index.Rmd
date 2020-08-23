@@ -30,9 +30,7 @@ options("scipen"=999,digits = 4)
 passwords <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-01-14/passwords.csv')
 
 ```
-```{r echo=FALSE,warning=FALSE,message=FALSE}
-#passwords <- readr::read_csv(here::here("./ content/post//Data/passwords.csv"))
-```
+
 
 # Exploring the dataset
 We use the skimr package to have a quick overview of the data with all the data types.
@@ -48,8 +46,7 @@ There are some rows with NAs that we are going to remove.It would be interesting
 
 plot1 <- passwords %>% filter(!is.na(category)) %>% mutate(time_unit = factor(time_unit,levels =  c("seconds","minutes","hours","days","weeks","months" ,"years"))) %>% 
   ggplot(aes(category,value,fill = time_unit))+
-  geom_point(aes(colour = time_unit),size = 2.5)+#coord_polar()
-  #geom_jitter(aes(colour = time_unit))+
+  geom_point(aes(colour = time_unit),size = 2.5)+
   coord_polar(clip = "on")+theme_dark()+
   theme(legend.position = "bottom",axis.text = element_text(colour = "black"),panel.grid.major = element_line("gray"))+ 
   scale_colour_manual(values = c("#FFDB6D","#C4961A","#F4EDCA","#D16103","#00AFBB","#4E84C4","#FC4E07"),guide = guide_legend(nrow = 1))
@@ -68,4 +65,34 @@ plot1
     geom_text(aes(label = round(value,1)),hjust = -.5)+theme_minimal()+
     labs(x = "Strenght of Password",y = "Category of Password")
 ```
+
+```{r nature_of_pwd,message=FALSE,warning=FALSE,dpi=200}
+
+passwords %>% filter(!is.na(password)) %>% 
+  mutate(num_digits = str_count(password,"\\d"),num_char = str_count(password,"\\D"),no_digits_char = str_count(password,"[^\\d] | [^\\D]"), 
+         type_of_pwd = case_when(num_digits == 0 & num_char >0 ~"Character only",num_digits > 0 & num_char ==0 ~"Numeric only",num_digits >0 & num_char >0 ~"Both Character & Numeric")) %>%
+  count(category,type_of_pwd,name = "Freq") %>% 
+  ggplot(aes(Freq,category,fill = type_of_pwd))+
+  geom_col(width = .5,position = "dodge")+theme_minimal()+
+  theme(legend.position = "bottom")+labs(x = "Category of Password",y = "Frequecy")+
+  scale_fill_manual(values = c("#00AFBB","#4E84C4","#FC4E07"))
+```
+
+Looks like majority of the passwords consist of only character values. Some of the password-related and sport related passwords have both the numeric and characters.The nerdy-pop passwords have the least number of passwords with numeric and simple-alphanumeric have the highest number of passwords with only numeric and also with both the numeric and characters. 
+
+```{r message=FALSE,warning=FALSE,dpi=200}
+  passwords %>% filter(!is.na(password)) %>% 
+    mutate(num_digits = str_count(password,"\\d"),num_char = str_count(password,"\\D"),no_digits_char = str_count(password,"[^\\d] | [^\\D]"), 
+           type_of_pwd = case_when(num_digits == 0 & num_char >0 ~"Character only",num_digits > 0 & num_char ==0 ~"Numeric only",num_digits >0 & num_char >0 ~"Both Character & Numeric"),
+           labz = case_when(value > 75 ~ password,TRUE~"")) %>% 
+    group_by(type_of_pwd,time_unit) %>% summarise(value = mean(value,na.rm = T)) %>% 
+    mutate(time_unit = factor(time_unit,levels = c("seconds","minutes","hours","days","weeks","months" ,"years"))) %>% 
+    ggplot(aes(type_of_pwd,value,fill = time_unit))+
+    geom_col(position = "dodge")+theme_minimal()+
+    theme(legend.position = "bottom")+
+    labs(y = "Duration taken to crack password",x = NULL)+
+    scale_fill_brewer(palette = "Set1",guide = guide_legend(nrow = 1))+scale_y_continuous(expand = c(0,0),limits = c(0,60))
+```
+
+Based on the data, its better to have a password that's alpha numeric as it has a higher password strength and would take longer to crack as compared to passwords that are only consisting of numeric or only characters.
 

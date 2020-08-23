@@ -218,8 +218,7 @@ plot1 &amp;lt;- passwords %&amp;gt;%
   filter(!is.na(category)) %&amp;gt;%
   mutate(time_unit = factor(time_unit, levels = c(&amp;quot;seconds&amp;quot;, &amp;quot;minutes&amp;quot;, &amp;quot;hours&amp;quot;, &amp;quot;days&amp;quot;, &amp;quot;weeks&amp;quot;, &amp;quot;months&amp;quot;, &amp;quot;years&amp;quot;))) %&amp;gt;%
   ggplot(aes(category, value, fill = time_unit)) +
-  geom_point(aes(colour = time_unit), size = 2.5) + # coord_polar()
-  # geom_jitter(aes(colour = time_unit))+
+  geom_point(aes(colour = time_unit), size = 2.5) +
   coord_polar(clip = &amp;quot;on&amp;quot;) +
   theme_dark() +
   theme(legend.position = &amp;quot;bottom&amp;quot;, axis.text = element_text(colour = &amp;quot;black&amp;quot;), panel.grid.major = element_line(&amp;quot;gray&amp;quot;)) +
@@ -241,6 +240,41 @@ plot1&lt;/code&gt;&lt;/pre&gt;
   theme_minimal() +
   labs(x = &amp;quot;Strenght of Password&amp;quot;, y = &amp;quot;Category of Password&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;/post/2020-08-22-tidytuesday-cracking-passwords/index_files/figure-html/strenght_of_pswd%20-1.png&#34; width=&#34;1600&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;
+passwords %&amp;gt;%
+  filter(!is.na(password)) %&amp;gt;%
+  mutate(
+    num_digits = str_count(password, &amp;quot;\\d&amp;quot;), num_char = str_count(password, &amp;quot;\\D&amp;quot;), no_digits_char = str_count(password, &amp;quot;[^\\d] | [^\\D]&amp;quot;),
+    type_of_pwd = case_when(num_digits == 0 &amp;amp; num_char &amp;gt; 0 ~ &amp;quot;Character only&amp;quot;, num_digits &amp;gt; 0 &amp;amp; num_char == 0 ~ &amp;quot;Numeric only&amp;quot;, num_digits &amp;gt; 0 &amp;amp; num_char &amp;gt; 0 ~ &amp;quot;Both Character &amp;amp; Numeric&amp;quot;)
+  ) %&amp;gt;%
+  count(category, type_of_pwd, name = &amp;quot;Freq&amp;quot;) %&amp;gt;%
+  ggplot(aes(Freq, category, fill = type_of_pwd)) +
+  geom_col(width = .5, position = &amp;quot;dodge&amp;quot;) +
+  theme_minimal() +
+  theme(legend.position = &amp;quot;bottom&amp;quot;) +
+  labs(x = &amp;quot;Category of Password&amp;quot;, y = &amp;quot;Frequecy&amp;quot;) +
+  scale_fill_manual(values = c(&amp;quot;#00AFBB&amp;quot;, &amp;quot;#4E84C4&amp;quot;, &amp;quot;#FC4E07&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-08-22-tidytuesday-cracking-passwords/index_files/figure-html/nature_of_pwd-1.png&#34; width=&#34;1600&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Looks like majority of the passwords consist of only character values. Some of the password-related and sport related passwords have both the numeric and characters.The nerdy-pop passwords have the least number of passwords with numeric and simple-alphanumeric have the highest number of passwords with only numeric and also with both the numeric and characters.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;passwords %&amp;gt;%
+  filter(!is.na(password)) %&amp;gt;%
+  mutate(
+    num_digits = str_count(password, &amp;quot;\\d&amp;quot;), num_char = str_count(password, &amp;quot;\\D&amp;quot;), no_digits_char = str_count(password, &amp;quot;[^\\d] | [^\\D]&amp;quot;),
+    type_of_pwd = case_when(num_digits == 0 &amp;amp; num_char &amp;gt; 0 ~ &amp;quot;Character only&amp;quot;, num_digits &amp;gt; 0 &amp;amp; num_char == 0 ~ &amp;quot;Numeric only&amp;quot;, num_digits &amp;gt; 0 &amp;amp; num_char &amp;gt; 0 ~ &amp;quot;Both Character &amp;amp; Numeric&amp;quot;),
+    labz = case_when(value &amp;gt; 75 ~ password, TRUE ~ &amp;quot;&amp;quot;)
+  ) %&amp;gt;%
+  group_by(type_of_pwd, time_unit) %&amp;gt;%
+  summarise(value = mean(value, na.rm = T)) %&amp;gt;%
+  mutate(time_unit = factor(time_unit, levels = c(&amp;quot;seconds&amp;quot;, &amp;quot;minutes&amp;quot;, &amp;quot;hours&amp;quot;, &amp;quot;days&amp;quot;, &amp;quot;weeks&amp;quot;, &amp;quot;months&amp;quot;, &amp;quot;years&amp;quot;))) %&amp;gt;%
+  ggplot(aes(type_of_pwd, value, fill = time_unit)) +
+  geom_col(position = &amp;quot;dodge&amp;quot;) +
+  theme_minimal() +
+  theme(legend.position = &amp;quot;bottom&amp;quot;) +
+  labs(y = &amp;quot;Duration taken to crack password&amp;quot;, x = NULL) +
+  scale_fill_brewer(palette = &amp;quot;Set1&amp;quot;, guide = guide_legend(nrow = 1)) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 60))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-08-22-tidytuesday-cracking-passwords/index_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;1600&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Based on the data, its better to have a password that’s alpha numeric as it has a higher password strength and would take longer to crack as compared to passwords that are only consisting of numeric or only characters.&lt;/p&gt;
 &lt;/div&gt;
 </description>
     </item>
