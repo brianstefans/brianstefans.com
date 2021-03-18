@@ -1,0 +1,19 @@
+---
+title: Analysing Likert Scaled Data
+author: Brian Stephen Ssali
+date: '2021-03-18'
+slug: analysing-likert-scaled-data
+categories: []
+tags:
+  - regression
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2021-03-18T17:23:35+03:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---

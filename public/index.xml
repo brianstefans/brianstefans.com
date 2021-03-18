@@ -2,22 +2,35 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Brian Stephen Ssali</title>
-    <link>/</link>
-      <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://brianstefans.com/</link>
+      <atom:link href="https://brianstefans.com/index.xml" rel="self" type="application/rss+xml" />
     <description>Brian Stephen Ssali</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Brian Stephen Ssali 2020</copyright><lastBuildDate>Thu, 28 Jun 2018 00:00:00 +0100</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Brian Stephen Ssali 2021</copyright><lastBuildDate>Thu, 18 Mar 2021 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/images/icon_hu351f3ef6afdcba0ca5a2bf4b5cce77fa_9092_512x512_fill_lanczos_center_2.png</url>
+      <url>https://brianstefans.com/images/icon_hu351f3ef6afdcba0ca5a2bf4b5cce77fa_9092_512x512_fill_lanczos_center_2.png</url>
       <title>Brian Stephen Ssali</title>
-      <link>/</link>
+      <link>https://brianstefans.com/</link>
     </image>
     
     <item>
-      <title>#Tidytuesday Cracking Passwords</title>
-      <link>/post/tidytuesday-cracking-passwords/</link>
-      <pubDate>Sat, 22 Aug 2020 00:00:00 +0000</pubDate>
-      <guid>/post/tidytuesday-cracking-passwords/</guid>
+      <title>Analysing Likert Scaled Data</title>
+      <link>https://brianstefans.com/post/analysing-likert-scaled-data/</link>
+      <pubDate>Thu, 18 Mar 2021 00:00:00 +0000</pubDate>
+      <guid>https://brianstefans.com/post/analysing-likert-scaled-data/</guid>
       <description>
+&lt;script src=&#34;https://brianstefans.com/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+</description>
+    </item>
+    
+    <item>
+      <title>#Tidytuesday Cracking Passwords</title>
+      <link>https://brianstefans.com/post/tidytuesday-cracking-passwords/</link>
+      <pubDate>Sat, 22 Aug 2020 00:00:00 +0000</pubDate>
+      <guid>https://brianstefans.com/post/tidytuesday-cracking-passwords/</guid>
+      <description>
+&lt;script src=&#34;https://brianstefans.com/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;We are going to look a dataset from the Tidytuesday on the passwords. The dataset entails the actual text of the password,the category of the password,time taken to crack the password(both online and offline) and the strength of the password.&lt;/p&gt;
@@ -225,7 +238,7 @@ plot1 &amp;lt;- passwords %&amp;gt;%
   scale_colour_manual(values = c(&amp;quot;#FFDB6D&amp;quot;, &amp;quot;#C4961A&amp;quot;, &amp;quot;#F4EDCA&amp;quot;, &amp;quot;#D16103&amp;quot;, &amp;quot;#00AFBB&amp;quot;, &amp;quot;#4E84C4&amp;quot;, &amp;quot;#FC4E07&amp;quot;), guide = guide_legend(nrow = 1))
 
 plot1&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020-08-22-tidytuesday-cracking-passwords/index_files/figure-html/glimpse_of_dataset%20-1.png&#34; width=&#34;1600&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://brianstefans.com/post/2020-08-22-tidytuesday-cracking-passwords/index_files/figure-html/glimpse_of_dataset%20-1.png&#34; width=&#34;1600&#34; /&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;passwords %&amp;gt;%
   filter(!is.na(category)) %&amp;gt;%
   group_by(category) %&amp;gt;%
@@ -239,7 +252,7 @@ plot1&lt;/code&gt;&lt;/pre&gt;
   geom_text(aes(label = round(value, 1)), hjust = -.5) +
   theme_minimal() +
   labs(x = &amp;quot;Strenght of Password&amp;quot;, y = &amp;quot;Category of Password&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020-08-22-tidytuesday-cracking-passwords/index_files/figure-html/strenght_of_pswd%20-1.png&#34; width=&#34;1600&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://brianstefans.com/post/2020-08-22-tidytuesday-cracking-passwords/index_files/figure-html/strenght_of_pswd%20-1.png&#34; width=&#34;1600&#34; /&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;
 passwords %&amp;gt;%
   filter(!is.na(password)) %&amp;gt;%
@@ -254,7 +267,7 @@ passwords %&amp;gt;%
   theme(legend.position = &amp;quot;bottom&amp;quot;) +
   labs(x = &amp;quot;Category of Password&amp;quot;, y = &amp;quot;Frequecy&amp;quot;) +
   scale_fill_manual(values = c(&amp;quot;#00AFBB&amp;quot;, &amp;quot;#4E84C4&amp;quot;, &amp;quot;#FC4E07&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020-08-22-tidytuesday-cracking-passwords/index_files/figure-html/nature_of_pwd-1.png&#34; width=&#34;1600&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://brianstefans.com/post/2020-08-22-tidytuesday-cracking-passwords/index_files/figure-html/nature_of_pwd-1.png&#34; width=&#34;1600&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Looks like majority of the passwords consist of only character values. Some of the password-related and sport related passwords have both the numeric and characters.The nerdy-pop passwords have the least number of passwords with numeric and simple-alphanumeric have the highest number of passwords with only numeric and also with both the numeric and characters.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;passwords %&amp;gt;%
   filter(!is.na(password)) %&amp;gt;%
@@ -273,141 +286,17 @@ passwords %&amp;gt;%
   labs(y = &amp;quot;Duration taken to crack password&amp;quot;, x = NULL) +
   scale_fill_brewer(palette = &amp;quot;Set1&amp;quot;, guide = guide_legend(nrow = 1)) +
   scale_y_continuous(expand = c(0, 0), limits = c(0, 60))&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020-08-22-tidytuesday-cracking-passwords/index_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;1600&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://brianstefans.com/post/2020-08-22-tidytuesday-cracking-passwords/index_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;1600&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Based on the data, its better to have a password that’s alpha numeric as it has a higher password strength and would take longer to crack as compared to passwords that are only consisting of numeric or only characters.&lt;/p&gt;
 &lt;/div&gt;
 </description>
     </item>
     
     <item>
-      <title>Test</title>
-      <link>/post/test/</link>
-      <pubDate>Fri, 08 May 2020 00:00:00 +0000</pubDate>
-      <guid>/post/test/</guid>
-      <description>
-
-
-&lt;div id=&#34;r-markdown&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;R Markdown&lt;/h1&gt;
-&lt;p&gt;This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see &lt;a href=&#34;http://rmarkdown.rstudio.com&#34; class=&#34;uri&#34;&gt;http://rmarkdown.rstudio.com&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;You can embed an R code chunk like this:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(cars)
-##      speed           dist       
-##  Min.   : 4.0   Min.   :  2.00  
-##  1st Qu.:12.0   1st Qu.: 26.00  
-##  Median :15.0   Median : 36.00  
-##  Mean   :15.4   Mean   : 42.98  
-##  3rd Qu.:19.0   3rd Qu.: 56.00  
-##  Max.   :25.0   Max.   :120.00
-fit &amp;lt;- lm(dist ~ speed, data = cars)
-fit %&amp;gt;% head()
-## $coefficients
-## (Intercept)       speed 
-##  -17.579095    3.932409 
-## 
-## $residuals
-##          1          2          3          4          5          6          7 
-##   3.849460  11.849460  -5.947766  12.052234   2.119825  -7.812584  -3.744993 
-##          8          9         10         11         12         13         14 
-##   4.255007  12.255007  -8.677401   2.322599 -15.609810  -9.609810  -5.609810 
-##         15         16         17         18         19         20         21 
-##  -1.609810  -7.542219   0.457781   0.457781  12.457781 -11.474628  -1.474628 
-##         22         23         24         25         26         27         28 
-##  22.525372  42.525372 -21.407036 -15.407036  12.592964 -13.339445  -5.339445 
-##         29         30         31         32         33         34         35 
-## -17.271854  -9.271854   0.728146 -11.204263   2.795737  22.795737  30.795737 
-##         36         37         38         39         40         41         42 
-## -21.136672 -11.136672  10.863328 -29.069080 -13.069080  -9.069080  -5.069080 
-##         43         44         45         46         47         48         49 
-##   2.930920  -2.933898 -18.866307  -6.798715  15.201285  16.201285  43.201285 
-##         50 
-##   4.268876 
-## 
-## $effects
-##  (Intercept)        speed                                                     
-## -303.9144946  145.5522550   -8.1154395    9.8845605    0.1941147   -9.4963311 
-##                                                                               
-##   -5.1867770    2.8132230   10.8132230   -9.8772228    1.1227772  -16.5676686 
-##                                                                               
-##  -10.5676686   -6.5676686   -2.5676686   -8.2581144   -0.2581144   -0.2581144 
-##                                                                               
-##   11.7418856  -11.9485602   -1.9485602   22.0514398   42.0514398  -21.6390061 
-##                                                                               
-##  -15.6390061   12.3609939  -13.3294519   -5.3294519  -17.0198977   -9.0198977 
-##                                                                               
-##    0.9801023  -10.7103435    3.2896565   23.2896565   31.2896565  -20.4007893 
-##                                                                               
-##  -10.4007893   11.5992107  -28.0912352  -12.0912352   -8.0912352   -4.0912352 
-##                                                                               
-##    3.9087648   -1.4721268  -17.1625726   -4.8530184   17.1469816   18.1469816 
-##                           
-##   45.1469816    6.4565358 
-## 
-## $rank
-## [1] 2
-## 
-## $fitted.values
-##         1         2         3         4         5         6         7         8 
-## -1.849460 -1.849460  9.947766  9.947766 13.880175 17.812584 21.744993 21.744993 
-##         9        10        11        12        13        14        15        16 
-## 21.744993 25.677401 25.677401 29.609810 29.609810 29.609810 29.609810 33.542219 
-##        17        18        19        20        21        22        23        24 
-## 33.542219 33.542219 33.542219 37.474628 37.474628 37.474628 37.474628 41.407036 
-##        25        26        27        28        29        30        31        32 
-## 41.407036 41.407036 45.339445 45.339445 49.271854 49.271854 49.271854 53.204263 
-##        33        34        35        36        37        38        39        40 
-## 53.204263 53.204263 53.204263 57.136672 57.136672 57.136672 61.069080 61.069080 
-##        41        42        43        44        45        46        47        48 
-## 61.069080 61.069080 61.069080 68.933898 72.866307 76.798715 76.798715 76.798715 
-##        49        50 
-## 76.798715 80.731124 
-## 
-## $assign
-## [1] 0 1&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;including-plots&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Including Plots&lt;/h1&gt;
-&lt;p&gt;You can also embed plots. See Figure &lt;a href=&#34;#fig:pie&#34;&gt;1&lt;/a&gt; for example:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;par(mar = c(0, 1, 0, 1))
-pie(
-  c(280, 60, 20),
-  c(&amp;#39;Sky&amp;#39;, &amp;#39;Sunny side of pyramid&amp;#39;, &amp;#39;Shady side of pyramid&amp;#39;),
-  col = c(&amp;#39;#0292D8&amp;#39;, &amp;#39;#F7EA39&amp;#39;, &amp;#39;#C4B632&amp;#39;),
-  init.angle = -50, border = NA
-)&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:pie&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/2020-05-08-test/index_files/figure-html/pie-1.png&#34; alt=&#34;A fancy pie chart.&#34; width=&#34;2400&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;
-Figure 1: A fancy pie chart.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Privacy Policy</title>
-      <link>/privacy/</link>
-      <pubDate>Thu, 28 Jun 2018 00:00:00 +0100</pubDate>
-      <guid>/privacy/</guid>
-      <description>&lt;p&gt;Add your privacy policy here and set &lt;code&gt;draft: false&lt;/code&gt; to publish it. Otherwise, delete this file if you don&amp;rsquo;t need it.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Terms</title>
-      <link>/terms/</link>
-      <pubDate>Thu, 28 Jun 2018 00:00:00 +0100</pubDate>
-      <guid>/terms/</guid>
-      <description>&lt;p&gt;Add your terms here and set &lt;code&gt;draft: false&lt;/code&gt; to publish it. Otherwise, delete this file if you don&amp;rsquo;t need it.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
       <title>A Plain Markdown Post</title>
-      <link>/post/2016-12-30-hello-markdown/</link>
+      <link>https://brianstefans.com/post/2016-12-30-hello-markdown/</link>
       <pubDate>Fri, 30 Dec 2016 21:49:57 -0700</pubDate>
-      <guid>/post/2016-12-30-hello-markdown/</guid>
+      <guid>https://brianstefans.com/post/2016-12-30-hello-markdown/</guid>
       <description>&lt;p&gt;This is a post written in plain Markdown (&lt;code&gt;*.md&lt;/code&gt;) instead of R Markdown (&lt;code&gt;*.Rmd&lt;/code&gt;). The major differences are:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;You cannot run any R code in a plain Markdown document, whereas in an R Markdown document, you can embed R code chunks (&lt;code&gt;```{r}&lt;/code&gt;);&lt;/li&gt;
@@ -433,10 +322,11 @@ Figure 1: A fancy pie chart.
     
     <item>
       <title>Hello R Markdown</title>
-      <link>/post/2015-07-23-r-rmarkdown/</link>
+      <link>https://brianstefans.com/post/2015-07-23-r-rmarkdown/</link>
       <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
-      <guid>/post/2015-07-23-r-rmarkdown/</guid>
+      <guid>https://brianstefans.com/post/2015-07-23-r-rmarkdown/</guid>
       <description>
+&lt;script src=&#34;https://brianstefans.com/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;div id=&#34;r-markdown&#34; class=&#34;section level1&#34;&gt;
@@ -528,7 +418,7 @@ pie(
   init.angle = -50, border = NA
 )&lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:pie&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/2015-07-23-r-rmarkdown_files/figure-html/pie-1.png&#34; alt=&#34;A fancy pie chart.&#34; width=&#34;2400&#34; /&gt;
+&lt;img src=&#34;https://brianstefans.com/post/2015-07-23-r-rmarkdown_files/figure-html/pie-1.png&#34; alt=&#34;A fancy pie chart.&#34; width=&#34;2400&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;
 Figure 1: A fancy pie chart.
 &lt;/p&gt;
@@ -539,9 +429,9 @@ Figure 1: A fancy pie chart.
     
     <item>
       <title>About</title>
-      <link>/about/</link>
+      <link>https://brianstefans.com/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>/about/</guid>
+      <guid>https://brianstefans.com/about/</guid>
       <description></description>
     </item>
     
