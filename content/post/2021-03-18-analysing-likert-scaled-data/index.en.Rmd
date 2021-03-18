@@ -10,10 +10,26 @@ subtitle: ''
 summary: ''
 authors: []
 lastmod: '2021-03-18T17:23:35+03:00'
-featured: no
+featured: yes
 image:
   caption: ''
   focal_point: ''
   preview_only: no
 projects: []
 ---
+
+We are going to look a dataset from the Tidytuesday on the passwords. The dataset entails the actual text of the password,the category of the password,time taken to crack the password(both online and offline) and the strength of the password.
+
+```{r setup, include=FALSE,message=FALSE,warning=FALSE}
+knitr::opts_chunk$set(collapse = TRUE,dpi = 200,cache = TRUE,cache.lazy = TRUE,tidy = "styler",fig.width = 8,fig.height = 8)
+library(dplyr)
+library(stringr)
+library(ggplot2)
+options("scipen"=999,digits = 4)
+
+#passwords <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-01-14/passwords.csv')
+
+```
+
+
+# Exploring the dataset
