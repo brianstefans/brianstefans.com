@@ -21,7 +21,7 @@
 &lt;script src=&#34;https://brianstefans.com/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
-&lt;p&gt;We are going to look a dataset from the Tidytuesday on the passwords. The dataset entails the actual text of the password,the category of the password,time taken to crack the password(both online and offline) and the strength of the password.&lt;/p&gt;
+&lt;p&gt;We are going to look analyzing likert scaled dataset. This is going to be split into a 2 parts with the first one looking at the Exploratory data analysis and the other at the variable association and regression&lt;/p&gt;
 &lt;div id=&#34;exploring-the-dataset&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;Exploring the dataset&lt;/h1&gt;
 &lt;/div&gt;

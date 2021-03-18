@@ -18,17 +18,41 @@ image:
 projects: []
 ---
 
-We are going to look a dataset from the Tidytuesday on the passwords. The dataset entails the actual text of the password,the category of the password,time taken to crack the password(both online and offline) and the strength of the password.
+We are going to look analyzing likert scaled dataset. This is going to be split into a 2 parts with the first one looking at the Exploratory data analysis and the other at the variable association and regression
 
 ```{r setup, include=FALSE,message=FALSE,warning=FALSE}
-knitr::opts_chunk$set(collapse = TRUE,dpi = 200,cache = TRUE,cache.lazy = TRUE,tidy = "styler",fig.width = 8,fig.height = 8)
+knitr::opts_chunk$set(cache=FALSE,cache.lazy=FALSE,warning=FALSE,message=FALSE,echo=FALSE,dpi=600,fig.width=8,fig.height =8)
+library(googlesheets4)
 library(dplyr)
 library(stringr)
 library(ggplot2)
-options("scipen"=999,digits = 4)
+library(lubridate)
+library(flextable)
+library(extrafont)
+loadfonts(device = "win")
 
 #passwords <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-01-14/passwords.csv')
 
+```
+
+```{r}
+#setting the theme
+theme_simple <- function(base_size = 12,base_family = "Josefin Sans"){
+  theme_minimal()+
+    theme(axis.line.y = element_line(colour="#b0b0b0", size = 0.3),
+          axis.line.x = element_line(colour="#b0b0b0", size = 0.3),
+          axis.ticks = element_line(colour="#b0b0b0", size = 1),
+          text = element_text(family = base_family, colour = "727273",face = "plain"),
+          axis.text = element_text(colour="black", face = "plain"),
+          #text = element_text(family = base_family,color = "black",face = "bold"),
+          #axis.text.x = element_text(family = base_family,color =  "black",face = "bold" ),#"#727273"
+          #axis.text.y = element_text(family = base_family,color = "black",face = "bold" ),
+          panel.grid = element_line(colour = "grey94"),
+          plot.title = element_text(hjust = .5,colour = "black",face = "bold"),
+          plot.caption = element_text(size=12, face="bold", color="#24ace4"))
+}
+
+theme_set(theme_simple())
 ```
 
 
