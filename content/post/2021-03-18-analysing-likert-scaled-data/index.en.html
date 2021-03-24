@@ -11,6 +11,7 @@ summary: ''
 authors: []
 lastmod: '2021-03-18T17:23:35+03:00'
 featured: yes
+commentable: true
 image:
   caption: ''
   focal_point: ''
@@ -21,7 +22,190 @@ projects: []
 <script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
 
-<p>We are going to look analyzing likert scaled dataset. This is going to be split into a 2 parts with the first one looking at the Exploratory data analysis and the other at the variable association and regression</p>
+<p>We are going to look analyzing likert scaled dataset. This is going to be split into a 2 parts with the first one looking at the Exploratory data analysis and the other at the variable association and regression. The data can be retrieved from <a href="http://openpsychometrics.org/_rawdata/BIG5.zip">here</a>.</p>
+<p>The data is focused on the 5 key attributes of one’s big 5 personalities that is ; Openness,Neuroticism, Agreeableness,Extraversion, Conscientiousness</p>
 <div id="exploring-the-dataset" class="section level1">
 <h1>Exploring the dataset</h1>
+<p>We shall now do some exploration of the variables within the dataset to be able to understand it better.
+First we look at the demographics to understand the distribution and origins of the respondents. We shall be using the skim function from the skimr package and the summary function for a quick EDA.</p>
+<table>
+<caption><span id="tab:unnamed-chunk-2">Table 1: </span>Data summary</caption>
+<tbody>
+<tr class="odd">
+<td align="left">Name</td>
+<td align="left">Piped data</td>
+</tr>
+<tr class="even">
+<td align="left">Number of rows</td>
+<td align="left">19852</td>
+</tr>
+<tr class="odd">
+<td align="left">Number of columns</td>
+<td align="left">8</td>
+</tr>
+<tr class="even">
+<td align="left">_______________________</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Column type frequency:</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">factor</td>
+<td align="left">7</td>
+</tr>
+<tr class="odd">
+<td align="left">numeric</td>
+<td align="left">1</td>
+</tr>
+<tr class="even">
+<td align="left">________________________</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Group variables</td>
+<td align="left">None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: factor</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="left">ordered</th>
+<th align="right">n_unique</th>
+<th align="left">top_counts</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">race</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="left">FALSE</td>
+<td align="right">14</td>
+<td align="left">Cau: 10641, Oth: 2555, Sou: 1871, Cau: 1521</td>
+</tr>
+<tr class="even">
+<td align="left">english_native_language</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="left">FALSE</td>
+<td align="right">3</td>
+<td align="left">Yes: 12391, No: 7391, mis: 70</td>
+</tr>
+<tr class="odd">
+<td align="left">gender</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="left">FALSE</td>
+<td align="right">4</td>
+<td align="left">Fem: 12055, Mal: 7671, Oth: 102, mis: 24</td>
+</tr>
+<tr class="even">
+<td align="left">hand_for_usage</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="left">FALSE</td>
+<td align="right">4</td>
+<td align="left">Rig: 17541, Lef: 1737, Bot: 474, mis: 100</td>
+</tr>
+<tr class="odd">
+<td align="left">source</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="left">FALSE</td>
+<td align="right">5</td>
+<td align="left">Ano: 12182, Goo: 3690, Oth: 3538, Fac: 305</td>
+</tr>
+<tr class="even">
+<td align="left">country</td>
+<td align="right">69</td>
+<td align="right">1</td>
+<td align="left">FALSE</td>
+<td align="right">143</td>
+<td align="left">Uni: 8753, Gab: 1531, Ind: 1464, Aus: 994</td>
+</tr>
+<tr class="odd">
+<td align="left">region</td>
+<td align="right">69</td>
+<td align="right">1</td>
+<td align="left">FALSE</td>
+<td align="right">5</td>
+<td align="left">Ame: 10791, Asi: 3487, Eur: 3016, Afr: 2288</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="right">p0</th>
+<th align="right">p25</th>
+<th align="right">p50</th>
+<th align="right">p75</th>
+<th align="right">p100</th>
+<th align="left">hist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">age</td>
+<td align="right">9</td>
+<td align="right">1</td>
+<td align="right">26.29</td>
+<td align="right">11.57</td>
+<td align="right">13</td>
+<td align="right">18</td>
+<td align="right">22</td>
+<td align="right">31</td>
+<td align="right">118</td>
+<td align="left">▇▂▁▁▁</td>
+</tr>
+</tbody>
+</table>
+<pre><code>##                                                      race      
+##  Caucasian (European)                                  :10641  
+##  Other                                                 : 2555  
+##  South East Asian (Chinese, Thai, Malay, Filipino, etc): 1871  
+##  Caucasian (Indian)                                    : 1521  
+##  Mixed Race                                            : 1442  
+##  Caucasian (Middle East)                               :  519  
+##  (Other)                                               : 1303  
+##       age         english_native_language    gender      hand_for_usage
+##  Min.   : 13.00   missed:   70            Female:12055   Both  :  474  
+##  1st Qu.: 18.00   No    : 7391            Male  : 7671   Left  : 1737  
+##  Median : 22.00   Yes   :12391            missed:   24   missed:  100  
+##  Mean   : 26.29                           Other :  102   Right :17541  
+##  3rd Qu.: 31.00                                                        
+##  Max.   :118.00                                                        
+##  NA&#39;s   :9                                                             
+##                               source                          country    
+##  Another page on the test website:12182   United States of America:8753  
+##  edu related url                 :  137   Gabon                   :1531  
+##  Facebook                        :  305   India                   :1464  
+##  Google                          : 3690   Austria                 : 994  
+##  Other source                    : 3538   Canada                  : 924  
+##                                           (Other)                 :6117  
+##                                           NA&#39;s                    :  69  
+##       region     
+##  Africa  : 2288  
+##  Americas:10791  
+##  Asia    : 3487  
+##  Europe  : 3016  
+##  Oceania :  201  
+##  NA&#39;s    :   69  
+## </code></pre>
+<p>There are some columns with missing values. For these specific values we shall do away with them. We also observe that that majority of the respondents are Caucasians from Europe. A bigger percentage of the respondents are females and majority use the right hand for usage. Also more responses were received from the american region.</p>
+<p>We now focus on the 5 attributes starting with Extraversion. We are going to be using the</p>
+<p><img src="/post/2021-03-18-analysing-likert-scaled-data/index.en_files/figure-html/unnamed-chunk-4-1.png" width="4800" /></p>
 </div>

@@ -11,6 +11,7 @@ summary: ''
 authors: []
 lastmod: '2021-03-18T17:23:35+03:00'
 featured: yes
+commentable: true
 image:
   caption: ''
   focal_point: ''
@@ -18,7 +19,9 @@ image:
 projects: []
 ---
 
-We are going to look analyzing likert scaled dataset. This is going to be split into a 2 parts with the first one looking at the Exploratory data analysis and the other at the variable association and regression
+We are going to look analyzing likert scaled dataset. This is going to be split into a 2 parts with the first one looking at the Exploratory data analysis and the other at the variable association and regression. The data can be retrieved from [here](http://openpsychometrics.org/_rawdata/BIG5.zip). 
+
+The data is focused on the 5 key attributes of one's big 5 personalities that is ; Openness,Neuroticism, Agreeableness,Extraversion, Conscientiousness
 
 ```{r setup, include=FALSE,message=FALSE,warning=FALSE}
 knitr::opts_chunk$set(cache=FALSE,cache.lazy=FALSE,warning=FALSE,message=FALSE,echo=FALSE,dpi=600,fig.width=8,fig.height =8)
@@ -31,11 +34,7 @@ library(flextable)
 library(extrafont)
 loadfonts(device = "win")
 
-#passwords <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-01-14/passwords.csv')
 
-```
-
-```{r}
 #setting the theme
 theme_simple <- function(base_size = 12,base_family = "Josefin Sans"){
   theme_minimal()+
@@ -56,4 +55,69 @@ theme_set(theme_simple())
 ```
 
 
-# Exploring the dataset
+```{r }
+country_codes <- readr::read_csv("./Data/BIG5/country_codes2.txt")
+dta <- read.csv("./Data/BIG5/data.csv",header = T,sep = " ")
+dta_names <- names(dta) %>% strsplit("\\.") 
+
+dta_cleaned <- dta %>% select(tt=race.age.engnat.gender.hand.source.country.E1.E2.E3.E4.E5.E6.E7.E8.E9.E10.N1.N2.N3.N4.N5.N6.N7.N8.N9.N10.A1.A2.A3.A4.A5.A6.A7.A8.A9.A10.C1.C2.C3.C4.C5.C6.C7.C8.C9.C10.O1.O2.O3.O4.O5.O6.O7.O8.O9.O10) %>% tidyr::separate(col = tt,into = paste0("nm",1:57)) %>% purrr::set_names(nm = dta_names %>% unlist()) %>% 
+  mutate(race = case_when(race == "1" ~ "Mixed Race",race == "2" ~ "Arctic (Siberian, Eskimo)",race == "3" ~ "Caucasian (European)",
+                          race == "4" ~ "Caucasian (Indian)",race == "5" ~ "Caucasian (Middle East)",race == "6" ~ "Caucasian (North African, Other)",
+                          race == "7" ~ "Indigenous Australian",race == "8" ~ "Native American",
+                          race == "9" ~ "North East Asian (Mongol, Tibetan, Korean Japanese, etc)",race == "10" ~ "Pacific (Polynesian, Micronesian, etc)",
+                          race=="11"~"South East Asian (Chinese, Thai, Malay, Filipino, etc)",race == "12"~"West African, Bushmen",
+                          race == "13" ~ "Other" ,race == "0" ~ "Missed"),
+         age = as.numeric(age),
+         age = case_when(between(age,1000,2021)~ 2021-age, age < 120 ~age),
+         country = str_to_lower(country),
+         english_native_language = case_when(engnat == "1"~"Yes",engnat == "2"~"No",engnat == "0"~"missed"),
+         gender = case_when(gender == "1"~"Male",gender == "2"~"Female",gender == "3"~ "Other",gender == "0"~"missed"),
+         hand_for_usage = case_when(hand == "1"~"Right",hand == "2"~"Left",hand == "3"~ "Both",hand == "0"~"missed"),
+         source = case_when(source == "1" ~ "Another page on the test website",source == "2" ~ "Google",source == "3" ~ "Facebook",
+                            source == "4" ~ "edu related url",source == "5" ~ "Other source")) %>% 
+  mutate_at(vars("E1":"O10"),~ case_when(. == "1"~"Strongly Disagree", . == "2"~ "Disagree", . == "3" ~"Neutral", . == "4"~"Agree", . == "5"~"Strongly Agree")) %>% 
+  mutate_at(vars("E1":"O10"),~ factor(.,levels = c("Strongly Disagree","Disagree", "Neutral","Agree", "Strongly Agree"))) %>% 
+  select(-engnat,-hand) %>% 
+  left_join(country_codes %>% select(FIPS,official_name_en,`Region Name`) %>% rename(country = FIPS) %>% mutate(country = str_to_lower(country))) %>%
+  left_join(country_codes %>% select(FIPS2 = `ISO3166-1-Alpha-2`,official_name_en2=official_name_en,name3 = `CLDR display name`,region_name=`Region Name`) %>% rename(country = FIPS2) %>% mutate(country = str_to_lower(country)),by = "country") %>% 
+  mutate(official_name_en = case_when(is.na(official_name_en)~official_name_en2,TRUE~official_name_en),
+         official_name_en = case_when(is.na(official_name_en)~name3,TRUE~official_name_en),
+         `Region Name` = case_when(is.na(`Region Name`)~region_name,name3 == "Taiwan"~"Asia",TRUE~`Region Name`),
+         region_nm = case_when(name3 == "Taiwan"~"Asia",TRUE~`Region Name`) )%>% 
+  select(-country,-official_name_en2,-name3,-`Region Name`,-region_name) %>% 
+  rename(country = official_name_en,region = region_nm) %>% 
+  select(race,age,english_native_language,gender,hand_for_usage,source,country,region,everything()) %>% distinct(.)
+
+
+```
+
+# Exploring the dataset 
+We shall now do some exploration of the variables within the dataset to be able to understand it better. 
+First we look at the demographics to understand the distribution and origins of the respondents. We shall be using the skim function from the skimr package and the summary function for a quick EDA.
+
+```{r}
+dta_cleaned %>% select(1:8) %>% 
+  mutate_at(vars(-age),~factor(.)) %>% 
+  skimr::skim()
+```
+
+
+```{r}
+dta_cleaned %>% select(1:8) %>% 
+  mutate_at(vars(-age),~factor(.)) %>% 
+  summary()
+```
+
+There are some columns with missing values. For these specific values we shall do away with them. We also observe that that majority of the respondents are Caucasians from Europe. A bigger percentage of the respondents are females and majority use the right hand for usage. Also more responses were received from the american region.
+
+We now focus on the 5 attributes starting with Extraversion. We are going to be using the 
+
+```{r}
+plot <- dta_cleaned %>% select("E1":"E10") %>%
+  purrr::set_names(nm = c("I am the life of the party","I don't talk a lot","I feel comfortable around people","I keep in the background","I start conversations","I have little to say",
+                          "I talk to a lot of different people at parties","I don't like to draw attention to myself","I don't mind being the center of attention","I am quiet around strangers"))%>% likert::likert() %>% plot()
+
+plot +
+  scale_y_continuous(labels = function(x) str_wrap(x,width =  50))
+```
+
