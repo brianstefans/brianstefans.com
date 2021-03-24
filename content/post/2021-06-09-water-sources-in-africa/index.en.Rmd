@@ -1,0 +1,87 @@
+---
+title: Water Sources in Africa
+author: Brian Stephen Ssali
+date: '2021-06-09'
+slug: water-sources-in-africa
+categories:
+  - R
+  - GIS
+tags:
+  - Tidytuesday
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2021-06-09T20:11:23+03:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+we are going to be looking at the water sources in Africa. The data used is from one of the TidyTuesday datasets and it can be retrieved from [here](http://openpsychometrics.org/_rawdata/BIG5.zip).
+We are going to look analyzing likert scaled dataset. This is going to be split into a 2 parts with the first one looking at the Exploratory data analysis and the other at the variable association and regression. The data can be retrieved from [here](http://openpsychometrics.org/_rawdata/BIG5.zip). 
+
+The data is focused on the 5 key attributes of one's big 5 personalities that is ; Openness,Neuroticism, Agreeableness,Extraversion, Conscientiousness
+
+```{r setup, include=FALSE,message=FALSE,warning=FALSE}
+knitr::opts_chunk$set(cache=FALSE,cache.lazy=FALSE,warning=FALSE,message=FALSE,echo=FALSE,dpi=600,fig.width=8,fig.height =8)
+library(googlesheets4)
+library(dplyr)
+library(stringr)
+library(ggplot2)
+library(lubridate)
+library(flextable)
+library(extrafont)
+library(leaflet)
+library(sf)
+loadfonts(device = "win")
+
+
+#setting the theme
+theme_simple <- function(base_size = 12,base_family = "Josefin Sans"){
+  theme_minimal()+
+    theme(axis.line.y = element_line(colour="#b0b0b0", size = 0.3),
+          axis.line.x = element_line(colour="#b0b0b0", size = 0.3),
+          axis.ticks = element_line(colour="#b0b0b0", size = 1),
+          text = element_text(family = base_family, colour = "727273",face = "plain"),
+          axis.text = element_text(colour="black", face = "plain"),
+          #text = element_text(family = base_family,color = "black",face = "bold"),
+          #axis.text.x = element_text(family = base_family,color =  "black",face = "bold" ),#"#727273"
+          #axis.text.y = element_text(family = base_family,color = "black",face = "bold" ),
+          panel.grid = element_line(colour = "grey94"),
+          plot.title = element_text(hjust = .5,colour = "black",face = "bold"),
+          plot.caption = element_text(size=12, face="bold", color="#24ace4"))
+}
+
+theme_set(theme_simple())
+```
+
+```{r}
+## downloading and cleaning it.
+
+#water <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-05-04/water.csv')
+water_dta <- readRDS("./Data/water2021-06-09.rds")
+
+## getting the shapefiles
+africa_shp <- sf::st_read("./Data/africa_shapefile.shp")
+```
+
+Water sources across africa
+
+```{r}
+CLZ <- c(RColorBrewer::brewer.pal(name = "Dark2",n = 8),RColorBrewer::brewer.pal(name = "Paired",n = 8))
+africa_shp %>% rename(country_name = ADM0_NAME) %>% 
+  left_join(water_dta %>% count(country_name,water_source) %>% filter(!is.na(water_source)) %>% 
+              arrange(country_name,n) %>% distinct(country_name,.keep_all = T) %>% right_join(africa_shp %>% select(country_name = ADM0_NAME) %>% st_drop_geometry() )%>% mutate(cat = "minority") %>% 
+              bind_rows(water_dta %>% count(country_name,water_source) %>% filter(!is.na(water_source)) %>%
+                          arrange(country_name,desc(n)) %>% distinct(country_name,.keep_all = T)%>% right_join(africa_shp %>% select(country_name = ADM0_NAME) %>% st_drop_geometry() )%>% mutate(cat = "majority")  )) %>%
+  #st_drop_geometry() %>% View()
+  #mutate(n = case_when(n > 0~as.integer(0),TRUE~as.integer(0))) %>% #st_drop_geometry() %>% 
+  ggplot() +
+  geom_sf(aes(fill = water_source))+ggthemes::theme_map()+theme(legend.background =element_rect(fill = NA))+
+  scale_fill_manual(values = CLZ)+#  viridis::scale_fill_viridis(discrete = T)+# scale_fill_brewer(palette = "Set1")+# theme(axis.text = element_blank(),panel.grid = element_blank(),axis.ticks = element_blank(),axis.line = element_blank())+
+  facet_wrap(. ~ cat)
+```
+

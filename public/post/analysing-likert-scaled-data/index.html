@@ -27,7 +27,7 @@
   
     
   
-  <meta name="description" content="We are going to look analyzing likert scaled dataset. This is going to be split into a 2 parts with the first one looking at the Exploratory data analysis and the other at the variable association and regression">
+  <meta name="description" content="We are going to look analyzing likert scaled dataset. This is going to be split into a 2 parts with the first one looking at the Exploratory data analysis and the other at the variable association and regression.">
 
   
   <link rel="alternate" hreflang="en-us" href="https://brianstefans.com/post/analysing-likert-scaled-data/">
@@ -241,7 +241,7 @@
   <meta property="og:site_name" content="Brian Stephen Ssali">
   <meta property="og:url" content="https://brianstefans.com/post/analysing-likert-scaled-data/">
   <meta property="og:title" content="Analysing Likert Scaled Data | Brian Stephen Ssali">
-  <meta property="og:description" content="We are going to look analyzing likert scaled dataset. This is going to be split into a 2 parts with the first one looking at the Exploratory data analysis and the other at the variable association and regression"><meta property="og:image" content="https://brianstefans.com/images/icon_hu351f3ef6afdcba0ca5a2bf4b5cce77fa_9092_512x512_fill_lanczos_center_2.png">
+  <meta property="og:description" content="We are going to look analyzing likert scaled dataset. This is going to be split into a 2 parts with the first one looking at the Exploratory data analysis and the other at the variable association and regression."><meta property="og:image" content="https://brianstefans.com/images/icon_hu351f3ef6afdcba0ca5a2bf4b5cce77fa_9092_512x512_fill_lanczos_center_2.png">
   <meta property="twitter:image" content="https://brianstefans.com/images/icon_hu351f3ef6afdcba0ca5a2bf4b5cce77fa_9092_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="en-us">
   
     
@@ -291,7 +291,7 @@
       "url": "https://brianstefans.com/images/icon_hu351f3ef6afdcba0ca5a2bf4b5cce77fa_9092_192x192_fill_lanczos_center_2.png"
     }
   },
-  "description": "We are going to look analyzing likert scaled dataset. This is going to be split into a 2 parts with the first one looking at the Exploratory data analysis and the other at the variable association and regression"
+  "description": "We are going to look analyzing likert scaled dataset. This is going to be split into a 2 parts with the first one looking at the Exploratory data analysis and the other at the variable association and regression."
 }
 </script>
 
@@ -520,12 +520,15 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    1 min read
+    3 min read
   </span>
   
 
   
   
+  
+  <span class="middot-divider"></span>
+  <a href="/post/analysing-likert-scaled-data/#disqus_thread"></a>
   
 
   
@@ -560,9 +563,192 @@
 <script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
 
-<p>We are going to look analyzing likert scaled dataset. This is going to be split into a 2 parts with the first one looking at the Exploratory data analysis and the other at the variable association and regression</p>
+<p>We are going to look analyzing likert scaled dataset. This is going to be split into a 2 parts with the first one looking at the Exploratory data analysis and the other at the variable association and regression. The data can be retrieved from <a href="http://openpsychometrics.org/_rawdata/BIG5.zip">here</a>.</p>
+<p>The data is focused on the 5 key attributes of one’s big 5 personalities that is ; Openness,Neuroticism, Agreeableness,Extraversion, Conscientiousness</p>
 <div id="exploring-the-dataset" class="section level1">
 <h1>Exploring the dataset</h1>
+<p>We shall now do some exploration of the variables within the dataset to be able to understand it better.
+First we look at the demographics to understand the distribution and origins of the respondents. We shall be using the skim function from the skimr package and the summary function for a quick EDA.</p>
+<table>
+<caption><span id="tab:unnamed-chunk-2">Table 1: </span>Data summary</caption>
+<tbody>
+<tr class="odd">
+<td align="left">Name</td>
+<td align="left">Piped data</td>
+</tr>
+<tr class="even">
+<td align="left">Number of rows</td>
+<td align="left">19852</td>
+</tr>
+<tr class="odd">
+<td align="left">Number of columns</td>
+<td align="left">8</td>
+</tr>
+<tr class="even">
+<td align="left">_______________________</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Column type frequency:</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">factor</td>
+<td align="left">7</td>
+</tr>
+<tr class="odd">
+<td align="left">numeric</td>
+<td align="left">1</td>
+</tr>
+<tr class="even">
+<td align="left">________________________</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Group variables</td>
+<td align="left">None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: factor</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="left">ordered</th>
+<th align="right">n_unique</th>
+<th align="left">top_counts</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">race</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="left">FALSE</td>
+<td align="right">14</td>
+<td align="left">Cau: 10641, Oth: 2555, Sou: 1871, Cau: 1521</td>
+</tr>
+<tr class="even">
+<td align="left">english_native_language</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="left">FALSE</td>
+<td align="right">3</td>
+<td align="left">Yes: 12391, No: 7391, mis: 70</td>
+</tr>
+<tr class="odd">
+<td align="left">gender</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="left">FALSE</td>
+<td align="right">4</td>
+<td align="left">Fem: 12055, Mal: 7671, Oth: 102, mis: 24</td>
+</tr>
+<tr class="even">
+<td align="left">hand_for_usage</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="left">FALSE</td>
+<td align="right">4</td>
+<td align="left">Rig: 17541, Lef: 1737, Bot: 474, mis: 100</td>
+</tr>
+<tr class="odd">
+<td align="left">source</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="left">FALSE</td>
+<td align="right">5</td>
+<td align="left">Ano: 12182, Goo: 3690, Oth: 3538, Fac: 305</td>
+</tr>
+<tr class="even">
+<td align="left">country</td>
+<td align="right">69</td>
+<td align="right">1</td>
+<td align="left">FALSE</td>
+<td align="right">143</td>
+<td align="left">Uni: 8753, Gab: 1531, Ind: 1464, Aus: 994</td>
+</tr>
+<tr class="odd">
+<td align="left">region</td>
+<td align="right">69</td>
+<td align="right">1</td>
+<td align="left">FALSE</td>
+<td align="right">5</td>
+<td align="left">Ame: 10791, Asi: 3487, Eur: 3016, Afr: 2288</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="right">p0</th>
+<th align="right">p25</th>
+<th align="right">p50</th>
+<th align="right">p75</th>
+<th align="right">p100</th>
+<th align="left">hist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">age</td>
+<td align="right">9</td>
+<td align="right">1</td>
+<td align="right">26.29</td>
+<td align="right">11.57</td>
+<td align="right">13</td>
+<td align="right">18</td>
+<td align="right">22</td>
+<td align="right">31</td>
+<td align="right">118</td>
+<td align="left">▇▂▁▁▁</td>
+</tr>
+</tbody>
+</table>
+<pre><code>##                                                      race      
+##  Caucasian (European)                                  :10516  
+##  Other                                                 : 2513  
+##  South East Asian (Chinese, Thai, Malay, Filipino, etc): 1842  
+##  Caucasian (Indian)                                    : 1496  
+##  Mixed Race                                            : 1429  
+##  Caucasian (Middle East)                               :  513  
+##  (Other)                                               : 1277  
+##       age         english_native_language    gender      hand_for_usage
+##  Min.   : 13.00   No : 7283               Female:11932   Both :  466   
+##  1st Qu.: 18.00   Yes:12303               Male  : 7557   Left : 1729   
+##  Median : 22.00                           Other :   97   Right:17391   
+##  Mean   : 26.25                                                        
+##  3rd Qu.: 31.00                                                        
+##  Max.   :118.00                                                        
+##                                                                        
+##                               source                          country    
+##  Another page on the test website:12018   United States of America:8665  
+##  edu related url                 :  137   Gabon                   :1507  
+##  Facebook                        :  302   India                   :1456  
+##  Google                          : 3643   Austria                 : 982  
+##  Other source                    : 3486   Canada                  : 913  
+##                                           Philippines             : 642  
+##                                           (Other)                 :5421  
+##       region     
+##  Africa  : 2259  
+##  Americas:10686  
+##  Asia    : 3455  
+##  Europe  : 2989  
+##  Oceania :  197  
+##                  
+## </code></pre>
+<p><img src="/post/2021-03-18-analysing-likert-scaled-data/index.en_files/figure-html/unnamed-chunk-4-1.png" width="4800" /></p>
+<p>There are some columns with missing values. For these specific values we shall do away with them. We also observe that that majority of the respondents are Caucasians from Europe. A bigger percentage of the respondents are females and majority use the right hand for usage. Also more responses were received from the american region.</p>
+<p>We now focus on the 5 attributes starting with Extraversion. We are going to be using the</p>
 </div>
 
     </div>
@@ -764,12 +950,23 @@
 
 
 
+<section id="comments">
+  
+</section>
+
 
 
 
 <div class="article-widget">
   
 <div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Next</div>
+    <a href="/post/water-sources-in-africa/" rel="next">Water Sources in Africa</a>
+  </div>
   
   
   

@@ -5,12 +5,35 @@
     <link>https://brianstefans.com/post/</link>
       <atom:link href="https://brianstefans.com/post/index.xml" rel="self" type="application/rss+xml" />
     <description>Blog</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Brian Stephen Ssali 2021</copyright><lastBuildDate>Thu, 18 Mar 2021 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Brian Stephen Ssali 2021</copyright><lastBuildDate>Wed, 09 Jun 2021 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://brianstefans.com/images/icon_hu351f3ef6afdcba0ca5a2bf4b5cce77fa_9092_512x512_fill_lanczos_center_2.png</url>
       <title>Blog</title>
       <link>https://brianstefans.com/post/</link>
     </image>
+    
+    <item>
+      <title>Water Sources in Africa</title>
+      <link>https://brianstefans.com/post/water-sources-in-africa/</link>
+      <pubDate>Wed, 09 Jun 2021 00:00:00 +0000</pubDate>
+      <guid>https://brianstefans.com/post/water-sources-in-africa/</guid>
+      <description>
+&lt;script src=&#34;https://brianstefans.com/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;we are going to be looking at the water sources in Africa. The data used is from one of the TidyTuesday datasets and it can be retrieved from &lt;a href=&#34;http://openpsychometrics.org/_rawdata/BIG5.zip&#34;&gt;here&lt;/a&gt;.
+We are going to look analyzing likert scaled dataset. This is going to be split into a 2 parts with the first one looking at the Exploratory data analysis and the other at the variable association and regression. The data can be retrieved from &lt;a href=&#34;http://openpsychometrics.org/_rawdata/BIG5.zip&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The data is focused on the 5 key attributes of one’s big 5 personalities that is ; Openness,Neuroticism, Agreeableness,Extraversion, Conscientiousness&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;## Reading layer `africa_shapefile&amp;#39; from data source `C:\Users\Brian Stephen Ssali\OneDrive\Scripts\Others\Portifolio\brianstefans.github.io\content\post\2021-06-09-water-sources-in-africa\Data\africa_shapefile.shp&amp;#39; using driver `ESRI Shapefile&amp;#39;
+## Simple feature collection with 55 features and 11 fields
+## geometry type:  MULTIPOLYGON
+## dimension:      XY
+## bbox:           xmin: -17.53017 ymin: -46.98138 xmax: 51.41551 ymax: 37.56095
+## geographic CRS: WGS 84&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Water sources across africa&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://brianstefans.com/post/2021-06-09-water-sources-in-africa/index.en_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;4800&#34; /&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Analysing Likert Scaled Data</title>
@@ -21,9 +44,192 @@
 &lt;script src=&#34;https://brianstefans.com/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
-&lt;p&gt;We are going to look analyzing likert scaled dataset. This is going to be split into a 2 parts with the first one looking at the Exploratory data analysis and the other at the variable association and regression&lt;/p&gt;
+&lt;p&gt;We are going to look analyzing likert scaled dataset. This is going to be split into a 2 parts with the first one looking at the Exploratory data analysis and the other at the variable association and regression. The data can be retrieved from &lt;a href=&#34;http://openpsychometrics.org/_rawdata/BIG5.zip&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The data is focused on the 5 key attributes of one’s big 5 personalities that is ; Openness,Neuroticism, Agreeableness,Extraversion, Conscientiousness&lt;/p&gt;
 &lt;div id=&#34;exploring-the-dataset&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;Exploring the dataset&lt;/h1&gt;
+&lt;p&gt;We shall now do some exploration of the variables within the dataset to be able to understand it better.
+First we look at the demographics to understand the distribution and origins of the respondents. We shall be using the skim function from the skimr package and the summary function for a quick EDA.&lt;/p&gt;
+&lt;table&gt;
+&lt;caption&gt;&lt;span id=&#34;tab:unnamed-chunk-2&#34;&gt;Table 1: &lt;/span&gt;Data summary&lt;/caption&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Name&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Piped data&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Number of rows&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;19852&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Number of columns&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;8&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;_______________________&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Column type frequency:&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;factor&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;7&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;numeric&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;________________________&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Group variables&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;None&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;Variable type: factor&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;left&#34;&gt;skim_variable&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;n_missing&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;complete_rate&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;ordered&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;n_unique&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;top_counts&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;race&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;FALSE&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;14&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Cau: 10641, Oth: 2555, Sou: 1871, Cau: 1521&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;english_native_language&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;FALSE&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;3&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Yes: 12391, No: 7391, mis: 70&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;gender&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;FALSE&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;4&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Fem: 12055, Mal: 7671, Oth: 102, mis: 24&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;hand_for_usage&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;FALSE&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;4&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Rig: 17541, Lef: 1737, Bot: 474, mis: 100&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;source&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;FALSE&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;5&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Ano: 12182, Goo: 3690, Oth: 3538, Fac: 305&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;country&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;69&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;FALSE&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;143&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Uni: 8753, Gab: 1531, Ind: 1464, Aus: 994&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;region&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;69&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;FALSE&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;5&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Ame: 10791, Asi: 3487, Eur: 3016, Afr: 2288&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;Variable type: numeric&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;left&#34;&gt;skim_variable&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;n_missing&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;complete_rate&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;mean&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;sd&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;p0&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;p25&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;p50&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;p75&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;p100&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;hist&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;age&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;9&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;26.29&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;11.57&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;13&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;18&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;22&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;31&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;118&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;▇▂▁▁▁&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;pre&gt;&lt;code&gt;##                                                      race      
+##  Caucasian (European)                                  :10516  
+##  Other                                                 : 2513  
+##  South East Asian (Chinese, Thai, Malay, Filipino, etc): 1842  
+##  Caucasian (Indian)                                    : 1496  
+##  Mixed Race                                            : 1429  
+##  Caucasian (Middle East)                               :  513  
+##  (Other)                                               : 1277  
+##       age         english_native_language    gender      hand_for_usage
+##  Min.   : 13.00   No : 7283               Female:11932   Both :  466   
+##  1st Qu.: 18.00   Yes:12303               Male  : 7557   Left : 1729   
+##  Median : 22.00                           Other :   97   Right:17391   
+##  Mean   : 26.25                                                        
+##  3rd Qu.: 31.00                                                        
+##  Max.   :118.00                                                        
+##                                                                        
+##                               source                          country    
+##  Another page on the test website:12018   United States of America:8665  
+##  edu related url                 :  137   Gabon                   :1507  
+##  Facebook                        :  302   India                   :1456  
+##  Google                          : 3643   Austria                 : 982  
+##  Other source                    : 3486   Canada                  : 913  
+##                                           Philippines             : 642  
+##                                           (Other)                 :5421  
+##       region     
+##  Africa  : 2259  
+##  Americas:10686  
+##  Asia    : 3455  
+##  Europe  : 2989  
+##  Oceania :  197  
+##                  
+## &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://brianstefans.com/post/2021-03-18-analysing-likert-scaled-data/index.en_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;4800&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;There are some columns with missing values. For these specific values we shall do away with them. We also observe that that majority of the respondents are Caucasians from Europe. A bigger percentage of the respondents are females and majority use the right hand for usage. Also more responses were received from the american region.&lt;/p&gt;
+&lt;p&gt;We now focus on the 5 attributes starting with Extraversion. We are going to be using the&lt;/p&gt;
 &lt;/div&gt;
 </description>
     </item>

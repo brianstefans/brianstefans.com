@@ -2,19 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://brianstefans.com/post/</loc>
+    <lastmod>2021-06-09T20:11:23+03:00</lastmod>
+  </url><url>
+    <loc>https://brianstefans.com/</loc>
+    <lastmod>2021-06-09T20:11:23+03:00</lastmod>
+  </url><url>
+    <loc>https://brianstefans.com/categories/</loc>
+    <lastmod>2021-06-09T20:11:23+03:00</lastmod>
+  </url><url>
+    <loc>https://brianstefans.com/category/gis/</loc>
+    <lastmod>2021-06-09T20:11:23+03:00</lastmod>
+  </url><url>
+    <loc>https://brianstefans.com/category/r/</loc>
+    <lastmod>2021-06-09T20:11:23+03:00</lastmod>
+  </url><url>
+    <loc>https://brianstefans.com/tags/</loc>
+    <lastmod>2021-06-09T20:11:23+03:00</lastmod>
+  </url><url>
+    <loc>https://brianstefans.com/tag/tidytuesday/</loc>
+    <lastmod>2021-06-09T20:11:23+03:00</lastmod>
+  </url><url>
+    <loc>https://brianstefans.com/post/water-sources-in-africa/</loc>
+    <lastmod>2021-06-09T20:11:23+03:00</lastmod>
+  </url><url>
     <loc>https://brianstefans.com/post/analysing-likert-scaled-data/</loc>
     <lastmod>2021-03-18T17:23:35+03:00</lastmod>
   </url><url>
-    <loc>https://brianstefans.com/post/</loc>
-    <lastmod>2021-03-18T17:23:35+03:00</lastmod>
-  </url><url>
-    <loc>https://brianstefans.com/</loc>
-    <lastmod>2021-03-18T17:23:35+03:00</lastmod>
-  </url><url>
     <loc>https://brianstefans.com/tag/regression/</loc>
-    <lastmod>2021-03-18T17:23:35+03:00</lastmod>
-  </url><url>
-    <loc>https://brianstefans.com/tags/</loc>
     <lastmod>2021-03-18T17:23:35+03:00</lastmod>
   </url><url>
     <loc>https://brianstefans.com/post/tidytuesday-cracking-passwords/</loc>
@@ -23,22 +38,13 @@
     <loc>https://brianstefans.com/tag/r/</loc>
     <lastmod>2020-08-22T23:27:08+03:00</lastmod>
   </url><url>
-    <loc>https://brianstefans.com/tag/tidytuesday/</loc>
-    <lastmod>2020-08-22T23:27:08+03:00</lastmod>
-  </url><url>
     <loc>https://brianstefans.com/post/2016-12-30-hello-markdown/</loc>
     <lastmod>2016-12-30T21:49:57-07:00</lastmod>
-  </url><url>
-    <loc>https://brianstefans.com/categories/</loc>
-    <lastmod>2015-07-23T21:13:14-05:00</lastmod>
   </url><url>
     <loc>https://brianstefans.com/post/2015-07-23-r-rmarkdown/</loc>
     <lastmod>2015-07-23T21:13:14-05:00</lastmod>
   </url><url>
     <loc>https://brianstefans.com/tag/plot/</loc>
-    <lastmod>2015-07-23T21:13:14-05:00</lastmod>
-  </url><url>
-    <loc>https://brianstefans.com/category/r/</loc>
     <lastmod>2015-07-23T21:13:14-05:00</lastmod>
   </url><url>
     <loc>https://brianstefans.com/tag/r-markdown/</loc>
