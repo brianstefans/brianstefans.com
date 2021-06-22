@@ -20,10 +20,9 @@ image:
 projects: []
 ---
 
-we are going to be looking at the water sources in Africa. The data used is from one of the TidyTuesday datasets and it can be retrieved from [here](http://openpsychometrics.org/_rawdata/BIG5.zip).
-We are going to look analyzing likert scaled dataset. This is going to be split into a 2 parts with the first one looking at the Exploratory data analysis and the other at the variable association and regression. The data can be retrieved from [here](http://openpsychometrics.org/_rawdata/BIG5.zip). 
+we are going to be looking at the water sources in Africa. The data used is from one of the TidyTuesday[here](https://github.com/rfordatascience/tidytuesday/tree/master/data) datasets and it can be retrieved from [here](https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-05-04/water.csv).
+We are going to to utilize ggmap, ggplot and leaflet to create spatial maps and use alo use the tidyverse packages for data cleaning.
 
-The data is focused on the 5 key attributes of one's big 5 personalities that is ; Openness,Neuroticism, Agreeableness,Extraversion, Conscientiousness
 
 ```{r setup, include=FALSE,message=FALSE,warning=FALSE}
 knitr::opts_chunk$set(cache=FALSE,cache.lazy=FALSE,warning=FALSE,message=FALSE,echo=FALSE,dpi=600,fig.width=8,fig.height =8)
@@ -58,7 +57,7 @@ theme_simple <- function(base_size = 12,base_family = "Josefin Sans"){
 theme_set(theme_simple())
 ```
 
-```{r}
+```{r message=FALSE,warning=FALSE}
 ## downloading and cleaning it.
 
 #water <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-05-04/water.csv')

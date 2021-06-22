@@ -21,9 +21,8 @@
 &lt;script src=&#34;https://brianstefans.com/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
-&lt;p&gt;we are going to be looking at the water sources in Africa. The data used is from one of the TidyTuesday datasets and it can be retrieved from &lt;a href=&#34;http://openpsychometrics.org/_rawdata/BIG5.zip&#34;&gt;here&lt;/a&gt;.
-We are going to look analyzing likert scaled dataset. This is going to be split into a 2 parts with the first one looking at the Exploratory data analysis and the other at the variable association and regression. The data can be retrieved from &lt;a href=&#34;http://openpsychometrics.org/_rawdata/BIG5.zip&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The data is focused on the 5 key attributes of one’s big 5 personalities that is ; Openness,Neuroticism, Agreeableness,Extraversion, Conscientiousness&lt;/p&gt;
+&lt;p&gt;we are going to be looking at the water sources in Africa. The data used is from one of the TidyTuesday&lt;a href=&#34;https://github.com/rfordatascience/tidytuesday/tree/master/data&#34;&gt;here&lt;/a&gt; datasets and it can be retrieved from &lt;a href=&#34;https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-05-04/water.csv&#34;&gt;here&lt;/a&gt;.
+We are going to to utilize ggmap, ggplot and leaflet to create spatial maps and use alo use the tidyverse packages for data cleaning.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;## Reading layer `africa_shapefile&amp;#39; from data source `C:\Users\Brian Stephen Ssali\OneDrive\Scripts\Others\Portifolio\brianstefans.github.io\content\post\2021-06-09-water-sources-in-africa\Data\africa_shapefile.shp&amp;#39; using driver `ESRI Shapefile&amp;#39;
 ## Simple feature collection with 55 features and 11 fields
 ## geometry type:  MULTIPOLYGON
@@ -196,7 +195,6 @@ First we look at the demographics to understand the distribution and origins of 
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;pre&gt;&lt;code&gt;##                                                      race      
-<<<<<<< HEAD
 ##  Caucasian (European)                                  :10516  
 ##  Other                                                 : 2513  
 ##  South East Asian (Chinese, Thai, Malay, Filipino, etc): 1842  
@@ -231,42 +229,6 @@ First we look at the demographics to understand the distribution and origins of 
 &lt;p&gt;&lt;img src=&#34;https://brianstefans.com/post/2021-03-18-analysing-likert-scaled-data/index.en_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;4800&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;There are some columns with missing values. For these specific values we shall do away with them. We also observe that that majority of the respondents are Caucasians from Europe. A bigger percentage of the respondents are females and majority use the right hand for usage. Also more responses were received from the american region.&lt;/p&gt;
 &lt;p&gt;We now focus on the 5 attributes starting with Extraversion. We are going to be using the&lt;/p&gt;
-=======
-##  Caucasian (European)                                  :10641  
-##  Other                                                 : 2555  
-##  South East Asian (Chinese, Thai, Malay, Filipino, etc): 1871  
-##  Caucasian (Indian)                                    : 1521  
-##  Mixed Race                                            : 1442  
-##  Caucasian (Middle East)                               :  519  
-##  (Other)                                               : 1303  
-##       age         english_native_language    gender      hand_for_usage
-##  Min.   : 13.00   missed:   70            Female:12055   Both  :  474  
-##  1st Qu.: 18.00   No    : 7391            Male  : 7671   Left  : 1737  
-##  Median : 22.00   Yes   :12391            missed:   24   missed:  100  
-##  Mean   : 26.29                           Other :  102   Right :17541  
-##  3rd Qu.: 31.00                                                        
-##  Max.   :118.00                                                        
-##  NA&amp;#39;s   :9                                                             
-##                               source                          country    
-##  Another page on the test website:12182   United States of America:8753  
-##  edu related url                 :  137   Gabon                   :1531  
-##  Facebook                        :  305   India                   :1464  
-##  Google                          : 3690   Austria                 : 994  
-##  Other source                    : 3538   Canada                  : 924  
-##                                           (Other)                 :6117  
-##                                           NA&amp;#39;s                    :  69  
-##       region     
-##  Africa  : 2288  
-##  Americas:10791  
-##  Asia    : 3487  
-##  Europe  : 3016  
-##  Oceania :  201  
-##  NA&amp;#39;s    :   69  
-## &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;There are some columns with missing values. For these specific values we shall do away with them. We also observe that that majority of the respondents are Caucasians from Europe. A bigger percentage of the respondents are females and majority use the right hand for usage. Also more responses were received from the american region.&lt;/p&gt;
-&lt;p&gt;We now focus on the 5 attributes starting with Extraversion. We are going to be using the&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://brianstefans.com/post/2021-03-18-analysing-likert-scaled-data/index.en_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;4800&#34; /&gt;&lt;/p&gt;
->>>>>>> 749b8e300db0263aa43457293b512287af0a2cf5
 &lt;/div&gt;
 </description>
     </item>

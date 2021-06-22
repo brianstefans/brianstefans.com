@@ -78,7 +78,9 @@ africa_shp %>% rename(country_name = ADM0_NAME) %>%
   geom_sf()+
   geom_point(aes(x = lon_deg, y = lat_deg,colour = water_source))+
   facet_wrap(. ~ water_source)
+
 library(leaflet)
+library(sf)
 africa_shp <- sf::st_read("D:/Maps/Africa shapefile/africa_shapefile.shp")
   
 africa_shp %>% rename(country_name = ADM0_NAME) %>% 

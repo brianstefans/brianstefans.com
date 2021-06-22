@@ -21,9 +21,8 @@
 &lt;script src=&#34;https://brianstefans.com/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
-&lt;p&gt;we are going to be looking at the water sources in Africa. The data used is from one of the TidyTuesday datasets and it can be retrieved from &lt;a href=&#34;http://openpsychometrics.org/_rawdata/BIG5.zip&#34;&gt;here&lt;/a&gt;.
-We are going to look analyzing likert scaled dataset. This is going to be split into a 2 parts with the first one looking at the Exploratory data analysis and the other at the variable association and regression. The data can be retrieved from &lt;a href=&#34;http://openpsychometrics.org/_rawdata/BIG5.zip&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The data is focused on the 5 key attributes of one’s big 5 personalities that is ; Openness,Neuroticism, Agreeableness,Extraversion, Conscientiousness&lt;/p&gt;
+&lt;p&gt;we are going to be looking at the water sources in Africa. The data used is from one of the TidyTuesday&lt;a href=&#34;https://github.com/rfordatascience/tidytuesday/tree/master/data&#34;&gt;here&lt;/a&gt; datasets and it can be retrieved from &lt;a href=&#34;https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-05-04/water.csv&#34;&gt;here&lt;/a&gt;.
+We are going to to utilize ggmap, ggplot and leaflet to create spatial maps and use alo use the tidyverse packages for data cleaning.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;## Reading layer `africa_shapefile&amp;#39; from data source `C:\Users\Brian Stephen Ssali\OneDrive\Scripts\Others\Portifolio\brianstefans.github.io\content\post\2021-06-09-water-sources-in-africa\Data\africa_shapefile.shp&amp;#39; using driver `ESRI Shapefile&amp;#39;
 ## Simple feature collection with 55 features and 11 fields
 ## geometry type:  MULTIPOLYGON
