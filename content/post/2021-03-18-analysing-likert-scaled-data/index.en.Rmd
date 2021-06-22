@@ -104,6 +104,7 @@ dta_cleaned %>% select(1:8) %>%
 
 ```{r}
 dta_cleaned %>% select(1:8) %>% 
+<<<<<<< HEAD
   mutate_all(~case_when(. == "missed"~NA_character_,TRUE~as.character(.))) %>% mutate(age = as.numeric(age)) %>% 
   na.omit() %>% 
   mutate_at(vars(-age),~factor(.)) %>% 
@@ -116,6 +117,10 @@ dta_cleaned %>% select(1:8) %>%
   na.omit() %>% 
   mutate_at(vars(-age),~factor(.)) %>% select(-country) %>% 
   GGally::ggpairs()
+=======
+  mutate_at(vars(-age),~factor(.)) %>% 
+  summary()
+>>>>>>> 749b8e300db0263aa43457293b512287af0a2cf5
 ```
 
 There are some columns with missing values. For these specific values we shall do away with them. We also observe that that majority of the respondents are Caucasians from Europe. A bigger percentage of the respondents are females and majority use the right hand for usage. Also more responses were received from the american region.
@@ -123,6 +128,7 @@ There are some columns with missing values. For these specific values we shall d
 We now focus on the 5 attributes starting with Extraversion. We are going to be using the 
 
 ```{r}
+<<<<<<< HEAD
 # plot1 <- dta_cleaned %>% select("E1":"E10") %>%
 #   purrr::set_names(nm = c("I am the life of the party","I don't talk a lot","I feel comfortable around people","I keep in the background","I start conversations","I have little to say",
 #                           "I talk to a lot of different people at parties","I don't like to draw attention to myself","I don't mind being the center of attention","I am quiet around strangers"))%>% likert::likert() %>% plot()+
@@ -162,4 +168,13 @@ We now focus on the 5 attributes starting with Extraversion. We are going to be 
 
 
 
+=======
+plot <- dta_cleaned %>% select("E1":"E10") %>%
+  purrr::set_names(nm = c("I am the life of the party","I don't talk a lot","I feel comfortable around people","I keep in the background","I start conversations","I have little to say",
+                          "I talk to a lot of different people at parties","I don't like to draw attention to myself","I don't mind being the center of attention","I am quiet around strangers"))%>% likert::likert() %>% plot()
+
+plot +
+  scale_y_continuous(labels = function(x) str_wrap(x,width =  50))
+```
+>>>>>>> 749b8e300db0263aa43457293b512287af0a2cf5
 

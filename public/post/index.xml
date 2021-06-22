@@ -196,6 +196,7 @@ First we look at the demographics to understand the distribution and origins of 
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;pre&gt;&lt;code&gt;##                                                      race      
+<<<<<<< HEAD
 ##  Caucasian (European)                                  :10516  
 ##  Other                                                 : 2513  
 ##  South East Asian (Chinese, Thai, Malay, Filipino, etc): 1842  
@@ -230,6 +231,42 @@ First we look at the demographics to understand the distribution and origins of 
 &lt;p&gt;&lt;img src=&#34;https://brianstefans.com/post/2021-03-18-analysing-likert-scaled-data/index.en_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;4800&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;There are some columns with missing values. For these specific values we shall do away with them. We also observe that that majority of the respondents are Caucasians from Europe. A bigger percentage of the respondents are females and majority use the right hand for usage. Also more responses were received from the american region.&lt;/p&gt;
 &lt;p&gt;We now focus on the 5 attributes starting with Extraversion. We are going to be using the&lt;/p&gt;
+=======
+##  Caucasian (European)                                  :10641  
+##  Other                                                 : 2555  
+##  South East Asian (Chinese, Thai, Malay, Filipino, etc): 1871  
+##  Caucasian (Indian)                                    : 1521  
+##  Mixed Race                                            : 1442  
+##  Caucasian (Middle East)                               :  519  
+##  (Other)                                               : 1303  
+##       age         english_native_language    gender      hand_for_usage
+##  Min.   : 13.00   missed:   70            Female:12055   Both  :  474  
+##  1st Qu.: 18.00   No    : 7391            Male  : 7671   Left  : 1737  
+##  Median : 22.00   Yes   :12391            missed:   24   missed:  100  
+##  Mean   : 26.29                           Other :  102   Right :17541  
+##  3rd Qu.: 31.00                                                        
+##  Max.   :118.00                                                        
+##  NA&amp;#39;s   :9                                                             
+##                               source                          country    
+##  Another page on the test website:12182   United States of America:8753  
+##  edu related url                 :  137   Gabon                   :1531  
+##  Facebook                        :  305   India                   :1464  
+##  Google                          : 3690   Austria                 : 994  
+##  Other source                    : 3538   Canada                  : 924  
+##                                           (Other)                 :6117  
+##                                           NA&amp;#39;s                    :  69  
+##       region     
+##  Africa  : 2288  
+##  Americas:10791  
+##  Asia    : 3487  
+##  Europe  : 3016  
+##  Oceania :  201  
+##  NA&amp;#39;s    :   69  
+## &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;There are some columns with missing values. For these specific values we shall do away with them. We also observe that that majority of the respondents are Caucasians from Europe. A bigger percentage of the respondents are females and majority use the right hand for usage. Also more responses were received from the american region.&lt;/p&gt;
+&lt;p&gt;We now focus on the 5 attributes starting with Extraversion. We are going to be using the&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://brianstefans.com/post/2021-03-18-analysing-likert-scaled-data/index.en_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;4800&#34; /&gt;&lt;/p&gt;
+>>>>>>> 749b8e300db0263aa43457293b512287af0a2cf5
 &lt;/div&gt;
 </description>
     </item>
