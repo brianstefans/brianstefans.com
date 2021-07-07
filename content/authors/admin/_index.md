@@ -1,6 +1,6 @@
 ---
 # Display name
-title: Brian Ssali
+title: Brian Stephen  Ssali
 
 # Username (this should match the folder name)
 authors:
@@ -27,9 +27,9 @@ interests:
 
 education:
   courses:
-  - course: AI programming 
+  - course: Nano degree in AI programming 
     institution: Udacity
-    year: 2012
+    year: 2020
   - course: PgD in Monitoring and Evaluation
     institution: Uganda Management Institute
     year: 2019
@@ -44,7 +44,7 @@ education:
 social:
 - icon: envelope
   icon_pack: fas
-  link: '#contact'  # For a direct email link, use "mailto:brianstefans@gmail.com".
+  link: 'brianstefans@gmail.com'  # For a direct email link, use "mailto:brianstefans@gmail.com".
 - icon: twitter
   icon_pack: fab
   link: https://twitter.com/brianstefans
@@ -68,5 +68,5 @@ user_groups:
 - Visitors
 ---
 
-Brian Ssali is a data enthusiast whose interests include data science and machine learning. 
+Brian Stephen Ssali is a data enthusiast whose interests include data science and machine learning. 
 
