@@ -23,12 +23,6 @@
 
 &lt;p&gt;We are going to be looking at the water sources in Africa. The data used is from one of the Tidy Tuesday&lt;a href=&#34;https://github.com/rfordatascience/tidytuesday/tree/master/data&#34;&gt;here&lt;/a&gt; datasets and it can be retrieved from &lt;a href=&#34;https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-05-04/water.csv&#34;&gt;here&lt;/a&gt;.
 We are going to to utilize ggmap, ggplot and leaflet to create spatial maps and use also use the tidyverse packages for data cleaning.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;## Reading layer `africa_shapefile&amp;#39; from data source `C:\Users\Brian Stephen Ssali\OneDrive\Scripts\Others\Portifolio\brianstefans.github.io\content\post\2021-06-09-water-sources-in-africa\Data\africa_shapefile.shp&amp;#39; using driver `ESRI Shapefile&amp;#39;
-## Simple feature collection with 55 features and 11 fields
-## geometry type:  MULTIPOLYGON
-## dimension:      XY
-## bbox:           xmin: -17.53017 ymin: -46.98138 xmax: 51.41551 ymax: 37.56095
-## geographic CRS: WGS 84&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Water sources across Africa&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;CLZ &amp;lt;- c(RColorBrewer::brewer.pal(name = &amp;quot;Dark2&amp;quot;,n = 8),RColorBrewer::brewer.pal(name = &amp;quot;Paired&amp;quot;,n = 8))
 africa_shp %&amp;gt;% rename(country_name = ADM0_NAME) %&amp;gt;% 

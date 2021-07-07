@@ -57,14 +57,14 @@ theme_simple <- function(base_size = 12,base_family = "Josefin Sans"){
 theme_set(theme_simple())
 ```
 
-```{r message=FALSE,warning=FALSE}
+```{r message=FALSE,warning=FALSE,results='hide'}
 ## downloading and cleaning it.
 
 #water <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-05-04/water.csv')
 water_dta <- readRDS("./Data/water2021-06-09.rds")
 
 ## getting the shapefiles
-africa_shp <- sf::st_read("./Data/africa_shapefile.shp")
+africa_shp <- sf::st_read("./Data/africa_shapefile.shp",quiet =TRUE)
 ```
 
 Water sources across Africa
