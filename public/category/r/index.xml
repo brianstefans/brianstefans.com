@@ -21,16 +21,33 @@
 &lt;script src=&#34;https://brianstefans.com/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
-&lt;p&gt;we are going to be looking at the water sources in Africa. The data used is from one of the TidyTuesday&lt;a href=&#34;https://github.com/rfordatascience/tidytuesday/tree/master/data&#34;&gt;here&lt;/a&gt; datasets and it can be retrieved from &lt;a href=&#34;https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-05-04/water.csv&#34;&gt;here&lt;/a&gt;.
-We are going to to utilize ggmap, ggplot and leaflet to create spatial maps and use alo use the tidyverse packages for data cleaning.&lt;/p&gt;
+&lt;p&gt;We are going to be looking at the water sources in Africa. The data used is from one of the Tidy Tuesday&lt;a href=&#34;https://github.com/rfordatascience/tidytuesday/tree/master/data&#34;&gt;here&lt;/a&gt; datasets and it can be retrieved from &lt;a href=&#34;https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-05-04/water.csv&#34;&gt;here&lt;/a&gt;.
+We are going to to utilize ggmap, ggplot and leaflet to create spatial maps and use also use the tidyverse packages for data cleaning.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;## Reading layer `africa_shapefile&amp;#39; from data source `C:\Users\Brian Stephen Ssali\OneDrive\Scripts\Others\Portifolio\brianstefans.github.io\content\post\2021-06-09-water-sources-in-africa\Data\africa_shapefile.shp&amp;#39; using driver `ESRI Shapefile&amp;#39;
 ## Simple feature collection with 55 features and 11 fields
 ## geometry type:  MULTIPOLYGON
 ## dimension:      XY
 ## bbox:           xmin: -17.53017 ymin: -46.98138 xmax: 51.41551 ymax: 37.56095
 ## geographic CRS: WGS 84&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Water sources across africa&lt;/p&gt;
+&lt;p&gt;Water sources across Africa&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://brianstefans.com/post/2021-06-09-water-sources-in-africa/index.en_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;4800&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://brianstefans.com/post/2021-06-09-water-sources-in-africa/index.en_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;4800&#34; /&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;## &amp;lt;ggproto object: Class FacetWrap, Facet, gg&amp;gt;
+##     compute_layout: function
+##     draw_back: function
+##     draw_front: function
+##     draw_labels: function
+##     draw_panels: function
+##     finish_data: function
+##     init_scales: function
+##     map_data: function
+##     params: list
+##     setup_data: function
+##     setup_params: function
+##     shrink: TRUE
+##     train_scales: function
+##     vars: function
+##     super:  &amp;lt;ggproto object: Class FacetWrap, Facet, gg&amp;gt;&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     
