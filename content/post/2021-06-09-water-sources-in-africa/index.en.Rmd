@@ -20,8 +20,8 @@ image:
 projects: []
 ---
 
-we are going to be looking at the water sources in Africa. The data used is from one of the TidyTuesday[here](https://github.com/rfordatascience/tidytuesday/tree/master/data) datasets and it can be retrieved from [here](https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-05-04/water.csv).
-We are going to to utilize ggmap, ggplot and leaflet to create spatial maps and use alo use the tidyverse packages for data cleaning.
+We are going to be looking at the water sources in Africa. The data used is from one of the Tidy Tuesday[here](https://github.com/rfordatascience/tidytuesday/tree/master/data) datasets and it can be retrieved from [here](https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-05-04/water.csv).
+We are going to to utilize ggmap, ggplot and leaflet to create spatial maps and use also use the tidyverse packages for data cleaning.
 
 
 ```{r setup, include=FALSE,message=FALSE,warning=FALSE}
@@ -67,7 +67,7 @@ water_dta <- readRDS("./Data/water2021-06-09.rds")
 africa_shp <- sf::st_read("./Data/africa_shapefile.shp")
 ```
 
-Water sources across africa
+Water sources across Africa
 
 ```{r}
 CLZ <- c(RColorBrewer::brewer.pal(name = "Dark2",n = 8),RColorBrewer::brewer.pal(name = "Paired",n = 8))
@@ -81,6 +81,20 @@ africa_shp %>% rename(country_name = ADM0_NAME) %>%
   ggplot() +
   geom_sf(aes(fill = water_source))+ggthemes::theme_map()+theme(legend.background =element_rect(fill = NA))+
   scale_fill_manual(values = CLZ)+#  viridis::scale_fill_viridis(discrete = T)+# scale_fill_brewer(palette = "Set1")+# theme(axis.text = element_blank(),panel.grid = element_blank(),axis.ticks = element_blank(),axis.line = element_blank())+
+  facet_wrap(. ~ cat)
+```
+
+```{r}
+africa_shp %>% rename(country_name = ADM0_NAME) %>% 
+  left_join(water_dta %>% count(country_name,water_source) %>% filter(!is.na(water_source)) %>%
+              arrange(country_name,desc(n)) %>% distinct(country_name,.keep_all = T)%>% right_join(africa_shp %>% select(country_name = ADM0_NAME) %>% st_drop_geometry() )%>% mutate(cat = "majority") ) %>%
+  mutate(water_source = case_when(is.na(water_source)~"No data",TRUE~water_source)) %>% 
+  #st_drop_geometry() %>% View()
+  #mutate(n = case_when(n > 0~as.integer(0),TRUE~as.integer(0))) %>% #st_drop_geometry() %>% 
+  ggplot() +
+  geom_sf(aes(fill = water_source))+ggthemes::theme_map()+
+  theme(legend.background =element_rect(fill = NA),legend.position = "bottom")+
+  scale_fill_manual(values = CLZ)#+#  viridis::scale_fill_viridis(discrete = T)+# scale_fill_brewer(palette = "Set1")+# theme(axis.text = element_blank(),panel.grid = element_blank(),axis.ticks = element_blank(),axis.line = element_blank())+
   facet_wrap(. ~ cat)
 ```
 
