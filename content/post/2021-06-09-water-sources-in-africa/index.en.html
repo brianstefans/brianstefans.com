@@ -32,21 +32,13 @@ We are going to to utilize ggmap, ggplot and leaflet to create spatial maps and 
 ## bbox:           xmin: -17.53017 ymin: -46.98138 xmax: 51.41551 ymax: 37.56095
 ## geographic CRS: WGS 84</code></pre>
 <p>Water sources across Africa</p>
+<pre class="r"><code>CLZ &lt;- c(RColorBrewer::brewer.pal(name = &quot;Dark2&quot;,n = 8),RColorBrewer::brewer.pal(name = &quot;Paired&quot;,n = 8))
+africa_shp %&gt;% rename(country_name = ADM0_NAME) %&gt;% 
+  left_join(water_dta %&gt;% count(country_name,water_source) %&gt;% filter(!is.na(water_source)) %&gt;%
+              arrange(country_name,desc(n)) %&gt;% distinct(country_name,.keep_all = T)%&gt;% right_join(africa_shp %&gt;% select(country_name = ADM0_NAME) %&gt;% st_drop_geometry() )%&gt;% mutate(cat = &quot;majority&quot;) ) %&gt;%
+  mutate(water_source = case_when(is.na(water_source)~&quot;No data&quot;,TRUE~water_source)) %&gt;% 
+  ggplot() +
+  geom_sf(aes(fill = water_source))+ggthemes::theme_map()+
+  theme(legend.background =element_rect(fill = NA),legend.position = &quot;bottom&quot;)+
+  scale_fill_manual(values = CLZ)</code></pre>
 <p><img src="/post/2021-06-09-water-sources-in-africa/index.en_files/figure-html/unnamed-chunk-2-1.png" width="4800" /></p>
-<p><img src="/post/2021-06-09-water-sources-in-africa/index.en_files/figure-html/unnamed-chunk-3-1.png" width="4800" /></p>
-<pre><code>## &lt;ggproto object: Class FacetWrap, Facet, gg&gt;
-##     compute_layout: function
-##     draw_back: function
-##     draw_front: function
-##     draw_labels: function
-##     draw_panels: function
-##     finish_data: function
-##     init_scales: function
-##     map_data: function
-##     params: list
-##     setup_data: function
-##     setup_params: function
-##     shrink: TRUE
-##     train_scales: function
-##     vars: function
-##     super:  &lt;ggproto object: Class FacetWrap, Facet, gg&gt;</code></pre>

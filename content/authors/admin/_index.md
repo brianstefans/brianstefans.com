@@ -59,7 +59,7 @@ social:
 #   link: files/cv.pdf
 
 # Enter email to display Gravatar (if Gravatar enabled in Config)
-email: ""
+email: "brianstefans@gmail.com"
 
 # Organizational groups that you belong to (for People widget)
 #   Set this to `[]` or comment out if you are not using People widget.
@@ -68,5 +68,5 @@ user_groups:
 - Visitors
 ---
 
-Brian Ssali is an analyst at Livinggoods Uganda. His interests include data science and machine learning. 
+Brian Ssali is a data enthusiast whose interests include data science and machine learning. 
 

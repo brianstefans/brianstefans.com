@@ -69,32 +69,14 @@ africa_shp <- sf::st_read("./Data/africa_shapefile.shp")
 
 Water sources across Africa
 
-```{r}
+```{r echo=TRUE,warning=F}
 CLZ <- c(RColorBrewer::brewer.pal(name = "Dark2",n = 8),RColorBrewer::brewer.pal(name = "Paired",n = 8))
-africa_shp %>% rename(country_name = ADM0_NAME) %>% 
-  left_join(water_dta %>% count(country_name,water_source) %>% filter(!is.na(water_source)) %>% 
-              arrange(country_name,n) %>% distinct(country_name,.keep_all = T) %>% right_join(africa_shp %>% select(country_name = ADM0_NAME) %>% st_drop_geometry() )%>% mutate(cat = "minority") %>% 
-              bind_rows(water_dta %>% count(country_name,water_source) %>% filter(!is.na(water_source)) %>%
-                          arrange(country_name,desc(n)) %>% distinct(country_name,.keep_all = T)%>% right_join(africa_shp %>% select(country_name = ADM0_NAME) %>% st_drop_geometry() )%>% mutate(cat = "majority")  )) %>%
-  #st_drop_geometry() %>% View()
-  #mutate(n = case_when(n > 0~as.integer(0),TRUE~as.integer(0))) %>% #st_drop_geometry() %>% 
-  ggplot() +
-  geom_sf(aes(fill = water_source))+ggthemes::theme_map()+theme(legend.background =element_rect(fill = NA))+
-  scale_fill_manual(values = CLZ)+#  viridis::scale_fill_viridis(discrete = T)+# scale_fill_brewer(palette = "Set1")+# theme(axis.text = element_blank(),panel.grid = element_blank(),axis.ticks = element_blank(),axis.line = element_blank())+
-  facet_wrap(. ~ cat)
-```
-
-```{r}
 africa_shp %>% rename(country_name = ADM0_NAME) %>% 
   left_join(water_dta %>% count(country_name,water_source) %>% filter(!is.na(water_source)) %>%
               arrange(country_name,desc(n)) %>% distinct(country_name,.keep_all = T)%>% right_join(africa_shp %>% select(country_name = ADM0_NAME) %>% st_drop_geometry() )%>% mutate(cat = "majority") ) %>%
   mutate(water_source = case_when(is.na(water_source)~"No data",TRUE~water_source)) %>% 
-  #st_drop_geometry() %>% View()
-  #mutate(n = case_when(n > 0~as.integer(0),TRUE~as.integer(0))) %>% #st_drop_geometry() %>% 
   ggplot() +
   geom_sf(aes(fill = water_source))+ggthemes::theme_map()+
   theme(legend.background =element_rect(fill = NA),legend.position = "bottom")+
-  scale_fill_manual(values = CLZ)#+#  viridis::scale_fill_viridis(discrete = T)+# scale_fill_brewer(palette = "Set1")+# theme(axis.text = element_blank(),panel.grid = element_blank(),axis.ticks = element_blank(),axis.line = element_blank())+
-  facet_wrap(. ~ cat)
+  scale_fill_manual(values = CLZ)
 ```
-
